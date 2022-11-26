@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "303874792918",
+    "project_id": "kwikshop-83018",
+    "storage_bucket": "kwikshop-83018.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:303874792918:android:c45ad9f6edc14aad2ed877",
+        "android_client_info": {
+          "package_name": "com.example.kwikshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "303874792918-6t8oqgo4pn14f5erldm4jrb21muchpjs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGPjUrsCxTswje3hKvJ-4rN2voMSigwtE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "303874792918-6t8oqgo4pn14f5erldm4jrb21muchpjs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
