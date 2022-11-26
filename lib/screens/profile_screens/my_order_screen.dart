@@ -5,7 +5,6 @@ import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:kwikshop/body_widgets/header_widget.dart';
 import 'package:kwikshop/refactors/constants.dart';
-import 'package:kwikshop/screens/cart_screen.dart';
 
 class OrdersScreen extends StatelessWidget {
   @override
@@ -29,55 +28,41 @@ class OrdersScreen extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(
-            child: flag != 0
-                ? Column(
-                    children: [
-                      const SizedBox(height: 200),
-                      Container(
-                        alignment: Alignment.bottomCenter,
-                        margin: const EdgeInsets.fromLTRB(25, 10, 25, 10),
-                        padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                        child: const Image(
-                          image: AssetImage('images/emptycart.png'),
-                        ),
-                      ),
-                    ],
-                  )
-                : SingleChildScrollView(
-                    child: Stack(
-                      children: [
-                        SizedBox(
-                          height: 80,
-                          child: HeaderWidget(
-                            showIcon: false,
-                            height: 80,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(26.0),
-                          child: Column(
-                            children: [
-                              const SizedBox(height: 100),
-                              Column(
-                                children: [
-                                  SizedBox(
-                                    height: 195,
-                                    child: ListView.builder(
-                                      itemBuilder: (context, index) {
-                                        return OrderContainer(index: index);
-                                      },
-                                      itemCount: 1,
-                                      scrollDirection: Axis.vertical,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
+            child: SingleChildScrollView(
+              child: Stack(
+                children: [
+                  SizedBox(
+                    height: 80,
+                    child: HeaderWidget(
+                      showIcon: false,
+                      height: 80,
                     ),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.all(26.0),
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 100),
+                        Column(
+                          children: [
+                            SizedBox(
+                              height: 195,
+                              child: ListView.builder(
+                                itemBuilder: (context, index) {
+                                  return OrderContainer(index: index);
+                                },
+                                itemCount: 1,
+                                scrollDirection: Axis.vertical,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
           ),
         ],
       ),
