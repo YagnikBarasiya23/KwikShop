@@ -173,10 +173,10 @@ class _RetailerWidgetState extends State<RetailerWidget> {
     'images/store8.jpg',
     'images/store9.jpg',
   ];
-  late String shopName;
-  late String shopAddress;
-  late String rating;
-  late String distance;
+   String shopName ='';
+   String shopAddress='';
+  String rating='';
+   String distance='';
 
   late final DatabaseReference _databaseReference;
 

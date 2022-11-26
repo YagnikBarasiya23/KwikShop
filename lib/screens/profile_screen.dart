@@ -21,8 +21,8 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   late final DatabaseReference _databaseReference;
   final currentUser = FirebaseAuth.instance.currentUser!.uid;
-  late String firstName;
-  late String lastName;
+  String firstName='';
+   String lastName='';
   @override
   void initState() {
     _databaseReference = FirebaseDatabase.instance.reference();

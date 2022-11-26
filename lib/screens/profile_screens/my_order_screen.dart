@@ -5,66 +5,69 @@ import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:kwikshop/body_widgets/header_widget.dart';
 import 'package:kwikshop/refactors/constants.dart';
+import 'package:get/get.dart';
 
 class OrdersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            title: const Text('My Orders', style: kTextStyleHeaders),
-            elevation: 0.5,
-            iconTheme: const IconThemeData(color: Colors.black),
-            flexibleSpace: Container(
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: <Color>[
-                    Theme.of(context).primaryColor,
-                    Theme.of(context).colorScheme.secondary,
-                  ])),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: SingleChildScrollView(
-              child: Stack(
-                children: [
-                  SizedBox(
-                    height: 80,
-                    child: HeaderWidget(
-                      showIcon: false,
-                      height: 80,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(26.0),
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 100),
-                        Column(
-                          children: [
-                            SizedBox(
-                              height: 195,
-                              child: ListView.builder(
-                                itemBuilder: (context, index) {
-                                  return OrderContainer(index: index);
-                                },
-                                itemCount: 1,
-                                scrollDirection: Axis.vertical,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  )
-                ],
+    return Obx(
+      () => Scaffold(
+        body: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              title: const Text('My Orders', style: kTextStyleHeaders),
+              elevation: 0.5,
+              iconTheme: const IconThemeData(color: Colors.black),
+              flexibleSpace: Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: <Color>[
+                      Theme.of(context).primaryColor,
+                      Theme.of(context).colorScheme.secondary,
+                    ])),
               ),
             ),
-          ),
-        ],
+            SliverToBoxAdapter(
+              child: SingleChildScrollView(
+                child: Stack(
+                  children: [
+                    SizedBox(
+                      height: 80,
+                      child: HeaderWidget(
+                        showIcon: false,
+                        height: 80,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(26.0),
+                      child: Column(
+                        children: [
+                          const SizedBox(height: 100),
+                          Column(
+                            children: [
+                              SizedBox(
+                                height: 195,
+                                child: ListView.builder(
+                                  itemBuilder: (context, index) {
+                                    return OrderContainer(index: index);
+                                  },
+                                  itemCount: 1,
+                                  scrollDirection: Axis.vertical,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -79,9 +82,9 @@ class OrderContainer extends StatefulWidget {
 }
 
 class _OrderContainerState extends State<OrderContainer> {
-  late String grandTotal;
-  late String date;
-  late String shopName;
+  String grandTotal = '';
+  String date = '';
+  String shopName = '';
   final currentId = FirebaseAuth.instance.currentUser!.uid;
   late DatabaseReference _databaseReference;
   late final Query _query = FirebaseDatabase.instance

@@ -123,7 +123,7 @@ class _CartScreenState extends State<CartScreen> {
                                       .toString();
                                   product = _controller.product.keys
                                       .toList()[index]
-                                      .productname
+                                      .productName
                                       .toString();
                                   quantity = _controller.product.values
                                       .toList()[index]
@@ -314,6 +314,7 @@ class _CartScreenState extends State<CartScreen> {
                                           .child('Date')
                                           .set(DateFormat('dd-MM-yyyy')
                                               .format(DateTime.now()));
+
                                     }
                                   },
                                 ),
@@ -332,6 +333,7 @@ class _CartScreenState extends State<CartScreen> {
 }
 
 int flag = 0;
+
 Widget cartCatalog(
     int index, CartController controller, int quantity, Products product) {
   return Container(
