@@ -74,7 +74,7 @@ class ShopScreen extends StatelessWidget {
               flexibleSpace: FlexibleSpaceBar(
                 background: Image(
                   image: AssetImage(url.toString()),
-                  fit: BoxFit.fitWidth,
+                  fit: BoxFit.fill,
                 ),
                 title: Text(shopName.toString(),
                     style: kTextStyleLarge.copyWith(color: Colors.white)),
