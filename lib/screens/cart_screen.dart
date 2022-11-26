@@ -314,7 +314,7 @@ class _CartScreenState extends State<CartScreen> {
                                           .child('Date')
                                           .set(DateFormat('dd-MM-yyyy')
                                               .format(DateTime.now()));
-
+                                      flag = 1;
                                     }
                                   },
                                 ),
