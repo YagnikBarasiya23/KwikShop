@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kwikshop/body_widgets/header_widget.dart';
-import 'package:kwikshop/refactors/constants.dart';
+
 import 'package:get/get.dart';
-import 'package:kwikshop/refactors/widgets.dart';
+import 'package:kwikshop/components/address_container.dart';
+import 'package:kwikshop/constants.dart';
+
 import 'package:kwikshop/screens/add_detail_screen.dart';
 
 class AddressScreen extends StatelessWidget {

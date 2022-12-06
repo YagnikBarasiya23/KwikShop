@@ -5,8 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kwikshop/body_widgets/header_widget.dart';
 import 'package:get/get.dart';
-import 'package:kwikshop/refactors/constants.dart';
-import 'package:kwikshop/refactors/widgets.dart';
+import 'package:kwikshop/components/profile_tile.dart';
+import 'package:kwikshop/constants.dart';
+
 import 'package:kwikshop/screens/profile_screens/about_us.dart';
 import 'package:kwikshop/screens/profile_screens/accountsetting_screen.dart';
 import 'package:kwikshop/screens/profile_screens/address.dart';

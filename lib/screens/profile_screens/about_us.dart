@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kwikshop/body_widgets/header_widget.dart';
-import 'package:kwikshop/refactors/constants.dart';
-import 'package:kwikshop/refactors/widgets.dart';
+import 'package:kwikshop/components/profile_tile.dart';
+import 'package:kwikshop/constants.dart';
+
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutUs extends StatelessWidget {

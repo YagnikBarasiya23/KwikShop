@@ -2,8 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kwikshop/body_widgets/header_widget.dart';
-import 'package:kwikshop/refactors/constants.dart';
-import 'package:kwikshop/refactors/widgets.dart';
+import 'package:kwikshop/components/our_button.dart';
+import 'package:kwikshop/constants.dart';
+
 import 'package:kwikshop/screens/register_screen.dart';
 import 'package:get/get.dart';
 import 'package:kwikshop/screens/resetpassword_screen.dart';

@@ -7,10 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kwikshop/body_widgets/navigation_bar.dart';
+import 'package:kwikshop/components/address_container.dart';
+import 'package:kwikshop/components/our_button.dart';
+import 'package:kwikshop/constants.dart';
 import 'package:kwikshop/models/cart_controller.dart';
 import 'package:kwikshop/models/product_model.dart';
-import 'package:kwikshop/refactors/constants.dart';
-import 'package:kwikshop/refactors/widgets.dart';
+
 import 'package:kwikshop/screens/add_detail_screen.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 

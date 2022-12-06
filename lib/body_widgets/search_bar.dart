@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:kwikshop/refactors/widgets.dart';
+import 'package:kwikshop/components/retailer_widget.dart';
 
 class SearchBar extends SearchDelegate {
   final List<String> suggestions = [

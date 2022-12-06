@@ -4,9 +4,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kwikshop/constants.dart';
 import 'package:kwikshop/models/cart_controller.dart';
 import 'package:kwikshop/models/product_model.dart';
-import 'package:kwikshop/refactors/constants.dart';
+
 import 'package:kwikshop/screens/cart_screen.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
@@ -248,7 +249,7 @@ class _ItemCardState extends State<ItemCard> {
                         },
                         child: Icon(
                           CupertinoIcons.plus_circle_fill,
-                          size: 25,
+                          size: 35,
                           color: Colors.amber.shade700,
                         )),
                   ],

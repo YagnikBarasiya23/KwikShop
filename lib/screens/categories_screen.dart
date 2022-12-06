@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kwikshop/refactors/constants.dart';
-import 'package:kwikshop/refactors/widgets.dart';
+import 'package:kwikshop/components/retailer_widget.dart';
+import 'package:kwikshop/constants.dart';
+
 
 class CategoriesScreen extends StatelessWidget {
   CategoriesScreen({this.name});

@@ -3,8 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kwikshop/body_widgets/header_widget.dart';
-import 'package:kwikshop/refactors/constants.dart';
-import 'package:kwikshop/refactors/widgets.dart';
+import 'package:kwikshop/components/our_button.dart';
+import 'package:kwikshop/constants.dart';
+
 import 'package:get/get.dart';
 import 'package:kwikshop/screens/add_detail_screen.dart';
 import 'package:kwikshop/screens/login_screen.dart';

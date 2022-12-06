@@ -3,9 +3,10 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:kwikshop/body_widgets/header_widget.dart';
 import 'package:kwikshop/body_widgets/navigation_bar.dart';
-import 'package:kwikshop/refactors/constants.dart';
-import 'package:kwikshop/refactors/widgets.dart';
+
 import 'package:get/get.dart';
+import 'package:kwikshop/components/our_button.dart';
+import 'package:kwikshop/constants.dart';
 
 class DetailsScreen extends StatefulWidget {
   DetailsScreen({this.flag = 0});

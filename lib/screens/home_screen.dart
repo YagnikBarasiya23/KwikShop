@@ -4,10 +4,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kwikshop/refactors/constants.dart';
+
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:kwikshop/refactors/widgets.dart';
+import 'package:kwikshop/components/retailer_widget.dart';
+import 'package:kwikshop/constants.dart';
+
 import 'package:kwikshop/screens/offer&benefits_screen.dart';
 
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';

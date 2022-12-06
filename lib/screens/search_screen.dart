@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kwikshop/body_widgets/search_bar.dart';
+import 'package:kwikshop/constants.dart';
 import 'package:kwikshop/models/categories_model.dart';
-import 'package:kwikshop/refactors/constants.dart';
+
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:kwikshop/screens/categories_screen.dart';
 
