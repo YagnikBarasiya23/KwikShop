@@ -1,8 +1,7 @@
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kwikshop/refactors/constants.dart';
-
+import 'package:kwikshop/constants.dart';
 import 'package:kwikshop/screens/home_screen.dart';
 import 'package:kwikshop/screens/profile_screen.dart';
 import 'package:kwikshop/screens/search_screen.dart';

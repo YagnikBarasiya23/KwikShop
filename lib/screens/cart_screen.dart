@@ -12,7 +12,6 @@ import 'package:kwikshop/components/our_button.dart';
 import 'package:kwikshop/constants.dart';
 import 'package:kwikshop/models/cart_controller.dart';
 import 'package:kwikshop/models/product_model.dart';
-
 import 'package:kwikshop/screens/add_detail_screen.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 

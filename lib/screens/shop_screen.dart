@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:kwikshop/constants.dart';
 import 'package:kwikshop/models/cart_controller.dart';
 import 'package:kwikshop/models/product_model.dart';
-
 import 'package:kwikshop/screens/cart_screen.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kwikshop/refactors/constants.dart';
+import 'package:kwikshop/constants.dart';
+
 
 class HeaderWidget extends StatelessWidget {
   HeaderWidget({required this.showIcon, this.icon, required this.height});
