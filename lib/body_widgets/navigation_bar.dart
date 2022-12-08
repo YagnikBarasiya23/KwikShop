@@ -1,5 +1,7 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:kwikshop/constants.dart';
 import 'package:kwikshop/screens/home_screen.dart';
@@ -13,9 +15,10 @@ class NaviBar extends StatefulWidget {
 
 class _NaviBarState extends State<NaviBar> {
   int activeIndex = 0;
-  final IconData icon1 = CupertinoIcons.house_fill;
-  final IconData icon2 = CupertinoIcons.search;
-  final IconData icon3 = CupertinoIcons.person_fill;
+
+  final IconData icon1 = FontAwesomeIcons.homeAlt;
+  final IconData icon2 = FontAwesomeIcons.search;
+  final IconData icon3 = FontAwesomeIcons.solidUser;
 
   final screens = [
     HomeScreen(),
@@ -26,7 +29,7 @@ class _NaviBarState extends State<NaviBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CustomNavigationBar(
+      bottomNavigationBar: BottomNavigationBar(
         onTap: (p0) {
           setState(() {
             activeIndex = p0;
@@ -35,22 +38,15 @@ class _NaviBarState extends State<NaviBar> {
         backgroundColor: Colors.white,
         elevation: 2.5,
         currentIndex: activeIndex,
-        strokeColor: Colors.amber.shade700,
-        iconSize: 25,
-        selectedColor: greenColor,
+        iconSize: 20,
+        selectedItemColor: greenColor,
+        selectedLabelStyle: kTextStyleSmall,
+        type: BottomNavigationBarType.fixed,
+        showUnselectedLabels: false,
         items: [
-          CustomNavigationBarItem(
-            icon: Icon(icon1),
-            title: const Text('Home', style: kTextStyleSmall),
-          ),
-          CustomNavigationBarItem(
-            icon: Icon(icon2),
-            title: const Text('Search', style: kTextStyleSmall),
-          ),
-          CustomNavigationBarItem(
-            icon: Icon(icon3),
-            title: const Text('Profile', style: kTextStyleSmall),
-          ),
+          BottomNavigationBarItem(icon: Icon(icon1), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(icon2), label: 'Search'),
+          BottomNavigationBarItem(icon: Icon(icon3), label: 'Profile'),
         ],
       ),
       body: Stack(
