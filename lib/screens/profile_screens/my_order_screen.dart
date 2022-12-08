@@ -83,6 +83,7 @@ class _OrderContainerState extends State<OrderContainer> {
   String grandTotal = '';
   String date = '';
   String shopName = '';
+  String time = '';
   final currentId = FirebaseAuth.instance.currentUser!.uid;
   late DatabaseReference _databaseReference;
   late final Query _query = FirebaseDatabase.instance
@@ -127,6 +128,17 @@ class _OrderContainerState extends State<OrderContainer> {
         date = databaseEvent.snapshot.value.toString();
       });
     });
+    _databaseReference
+        .child('Cart')
+        .child(currentId)
+        .child(index.toString())
+        .child('Time')
+        .once()
+        .then((databaseEvent) {
+      setState(() {
+        time = databaseEvent.snapshot.value.toString();
+      });
+    });
   }
 
   @override
@@ -162,9 +174,15 @@ class _OrderContainerState extends State<OrderContainer> {
                     Text("${grandTotal.toString()}rs", style: kTextStyleSmall),
                   ],
                 ),
-                Text(date.toString(),
-                    style:
-                        kTextStyleSmall.copyWith(fontWeight: FontWeight.w600))
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(date.toString(),
+                        style: kTextStyleSmall.copyWith(
+                            fontWeight: FontWeight.w600)),
+                    Text(time.toString(), style: kTextStyleSmall)
+                  ],
+                )
               ],
             ),
             const Divider(thickness: 0.5),

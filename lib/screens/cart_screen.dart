@@ -317,6 +317,12 @@ class _CartScreenState extends State<CartScreen> {
                                           .child('Date')
                                           .set(DateFormat('dd-MM-yyyy')
                                               .format(DateTime.now()));
+                                      _databaseReference
+                                          .child(currentId)
+                                          .child('0')
+                                          .child('Time')
+                                          .set(DateFormat('KK:mm a')
+                                              .format(DateTime.now()));
                                       flag = 1;
                                     }
                                   },
