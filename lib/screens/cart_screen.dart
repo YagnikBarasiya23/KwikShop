@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:badges/badges.dart';
 import 'package:intl/intl.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -62,7 +64,7 @@ class _CartScreenState extends State<CartScreen> {
       if ((icon == null && elevation == 0 && colour == Colors.grey.shade100)) {
         icon = const Icon(
           CupertinoIcons.checkmark_alt,
-          color: Color(0xFFF26bf47),
+          color: greenColor,
         );
         colour = Colors.white;
         elevation = 5;
@@ -159,8 +161,8 @@ class _CartScreenState extends State<CartScreen> {
                                       transition: Transition.cupertino);
                                 },
                                 icon: Icon(
-                                  CupertinoIcons.pencil_circle_fill,
-                                  color: Colors.amber.shade700,
+                                  FontAwesomeIcons.solidEdit,
+                                  color: mainColor,
                                   size: 20,
                                 ),
                               ),
@@ -213,7 +215,7 @@ class _CartScreenState extends State<CartScreen> {
                                             const Icon(
                                               FontAwesomeIcons.moneyBill1,
                                               size: 30,
-                                              color: Color(0xFF64C41C),
+                                              color: greenColor,
                                             ),
                                             const SizedBox(width: 30),
                                             Text('Cash on Delivery',
@@ -250,10 +252,10 @@ class _CartScreenState extends State<CartScreen> {
                                   children: [
                                     Text('Total',
                                         style: kTextStyleLarge.copyWith(
-                                            color: Colors.amber.shade700)),
+                                            color: mainColor)),
                                     Text('${_controller.Total}rs',
                                         style: kTextStyleSmallBold.copyWith(
-                                            color: Colors.amber.shade700)),
+                                            color: mainColor)),
                                   ],
                                 ),
                                 const SizedBox(height: 10),
@@ -280,7 +282,7 @@ class _CartScreenState extends State<CartScreen> {
                                                         Transition.cupertino);
                                                 _controller.product.clear();
                                               },
-                                              color: Colors.amber.shade700,
+                                              color: mainColor,
                                               radius: const BorderRadius.all(
                                                   Radius.circular(20)),
                                               child: const Text('Back to Home'),
@@ -377,18 +379,24 @@ Widget cartCatalog(
                 onTap: () {
                   controller.addProducts(product);
                 },
-                child: Icon(CupertinoIcons.plus_circle_fill,
-                    color: Colors.amber.shade700)),
+                child: Icon(
+                  FontAwesomeIcons.circlePlus,
+                  color: mainColor,
+                  size: 20,
+                )),
             const SizedBox(width: 5),
             Text('$quantity',
-                style: kTextStyleSmall.copyWith(color: Colors.black)),
+                style: kTextStyleSmallBold.copyWith(color: Colors.black)),
             const SizedBox(width: 5),
             GestureDetector(
                 onTap: () {
                   controller.removeProducts(product);
                 },
-                child: Icon(CupertinoIcons.minus_circle_fill,
-                    color: Colors.amber.shade700)),
+                child: Icon(
+                  FontAwesomeIcons.circleMinus,
+                  color: mainColor,
+                  size: 20,
+                )),
           ],
         ),
       ],

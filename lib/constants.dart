@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 const kTextStyleHeadings = TextStyle(
     color: Colors.black,
@@ -48,6 +49,10 @@ const kTextFieldDecoration = InputDecoration(
   focusedErrorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(100)),
       borderSide: BorderSide(color: Colors.red, width: 2.0)),
-
-  // Inp
 );
+const primaryColor = Color(0xFFFFE082);
+const accentColor = Color(0xFF64FFDA);
+final mainColor = Colors.amber.shade800;
+const greenColor = Color(0xFF64C41C);
+const ratingColor = Color(0xFFFE9D34);
+const leftArrowIcon = Icon(FontAwesomeIcons.arrowLeftLong,color: Colors.white,size: 25);

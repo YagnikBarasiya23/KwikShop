@@ -36,7 +36,6 @@ class AboutUs extends StatelessWidget {
                       child: HeaderWidget(
                         showIcon: false,
                         height: 80,
-
                       )),
                   Column(
                     children: [

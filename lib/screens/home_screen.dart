@@ -137,8 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   text: TextSpan(children: [
                 TextSpan(
                   text: 'Hey! ',
-                  style: kTextStyleSmallBold.copyWith(
-                      color: Colors.amber.shade700),
+                  style: kTextStyleSmallBold.copyWith(color: mainColor),
                 ),
                 const TextSpan(
                     text:
@@ -179,7 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   duration: const Duration(milliseconds: 250),
                   count: 3,
                   effect: WormEffect(
-                    activeDotColor: Colors.amber.shade700,
+                    activeDotColor: mainColor,
                     dotHeight: 5,
                     dotWidth: 5,
                   )),

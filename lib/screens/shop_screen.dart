@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kwikshop/constants.dart';
 import 'package:kwikshop/models/cart_controller.dart';
 import 'package:kwikshop/models/product_model.dart';
@@ -58,70 +59,67 @@ class ShopScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     setID();
     return Scaffold(
-      body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              shadowColor: Colors.black,
-              elevation: 2.5,
-              expandedHeight: 220,
-              leading: IconButton(
-                  onPressed: () {
-                    Get.back();
-                  },
-                  icon: const Icon(CupertinoIcons.arrow_left,
-                      color: Colors.white)),
-              flexibleSpace: FlexibleSpaceBar(
-                background: Image(
-                  image: AssetImage(url.toString()),
-                  fit: BoxFit.fill,
-                ),
-                title: Text(shopName.toString(),
-                    style: kTextStyleLarge.copyWith(color: Colors.white)),
-              ),
-              actions: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Badge(
-                      elevation: 5,
-                      badgeColor: Colors.red,
-                      badgeContent:
-                          Obx(() => Text('${_controller1.product.length}')),
-                      child: GestureDetector(
-                        onTap: () {
-                          Get.to(() => CartScreen(shopName: shopName),
-                              transition: Transition.cupertino);
-                        },
-                        child: const Icon(
-                          CupertinoIcons.cart_fill,
-                          color: Colors.white,
-                          size: 30,
-                        ),
-                      )),
-                ),
-              ],
-            ),
-            SliverToBoxAdapter(
-                child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: MasonryGridView.builder(
-                scrollDirection: Axis.vertical,
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                mainAxisSpacing: 2,
-                crossAxisSpacing: 2,
-                gridDelegate:
-                    const SliverSimpleGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2),
-                itemBuilder: (context, index) {
-                  return ItemCard(
-                      index: index, controller: _controller, id: id);
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            shadowColor: Colors.black,
+            elevation: 2.5,
+            expandedHeight: 220,
+            leading: IconButton(
+                onPressed: () {
+                  Get.back();
                 },
-                itemCount: length,
+                icon: leftArrowIcon),
+            flexibleSpace: FlexibleSpaceBar(
+              background: Image(
+                image: AssetImage(url.toString()),
+                fit: BoxFit.fill,
               ),
-            ))
-          ],
-        ),
+              title: Text(shopName.toString(),
+                  style: kTextStyleLarge.copyWith(color: Colors.white)),
+            ),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.only(
+                    top: 12, bottom: 10, left: 10, right: 20),
+                child: Badge(
+                    elevation: 5,
+                    badgeColor: Colors.red,
+                    badgeContent:
+                        Obx(() => Text('${_controller1.product.length}')),
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.to(() => CartScreen(shopName: shopName),
+                            transition: Transition.cupertino);
+                      },
+                      child: const Icon(
+                        FontAwesomeIcons.cartShopping,
+                        color: Colors.white,
+                        size: 30,
+                      ),
+                    )),
+              ),
+            ],
+          ),
+          SliverToBoxAdapter(
+              child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: MasonryGridView.builder(
+              scrollDirection: Axis.vertical,
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              mainAxisSpacing: 2,
+              crossAxisSpacing: 2,
+              gridDelegate:
+                  const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2),
+              itemBuilder: (context, index) {
+                return ItemCard(index: index, controller: _controller, id: id);
+              },
+              itemCount: length,
+            ),
+          ))
+        ],
       ),
     );
   }
@@ -206,7 +204,7 @@ class _ItemCardState extends State<ItemCard> {
             color: kShadowColor.withOpacity(0.23))
       ]),
       child: Padding(
-        padding: const EdgeInsets.only(top: 8, bottom: 8, left: 8, right: 6),
+        padding: const EdgeInsets.only(top: 8, bottom: 10, left: 8, right: 8),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -247,9 +245,9 @@ class _ItemCardState extends State<ItemCard> {
                               .remove();
                         },
                         child: Icon(
-                          CupertinoIcons.plus_circle_fill,
-                          size: 35,
-                          color: Colors.amber.shade700,
+                          FontAwesomeIcons.circlePlus,
+                          size: 30,
+                          color: mainColor,
                         )),
                   ],
                 ),

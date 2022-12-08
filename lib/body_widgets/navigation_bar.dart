@@ -37,7 +37,7 @@ class _NaviBarState extends State<NaviBar> {
         currentIndex: activeIndex,
         strokeColor: Colors.amber.shade700,
         iconSize: 25,
-        selectedColor: const Color(0xFF64C41C),
+        selectedColor: greenColor,
         items: [
           CustomNavigationBarItem(
             icon: Icon(icon1),

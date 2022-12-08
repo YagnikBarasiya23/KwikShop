@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kwikshop/body_widgets/header_widget.dart';
 import 'package:get/get.dart';
 import 'package:kwikshop/components/profile_tile.dart';
@@ -22,8 +23,8 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   late final DatabaseReference _databaseReference;
   final currentUser = FirebaseAuth.instance.currentUser!.uid;
-  String firstName='';
-   String lastName='';
+  String firstName = '';
+  String lastName = '';
   @override
   void initState() {
     _databaseReference = FirebaseDatabase.instance.reference();
@@ -127,15 +128,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Get.to(() => OrdersScreen(),
                                     transition: Transition.cupertino);
                               },
-                              child:
-                                  tile('My Orders', CupertinoIcons.bag_fill)),
+                              child: tile(
+                                  'My Orders', FontAwesomeIcons.shoppingBag)),
                           GestureDetector(
                               onTap: () {
                                 Get.to(() => AddressScreen(),
                                     transition: Transition.cupertino);
                               },
                               child: tile(
-                                  'Address', CupertinoIcons.location_fill)),
+                                  'Address', FontAwesomeIcons.addressBook)),
                           GestureDetector(
                             onTap: () {
                               Get.to(() => AccountSettingScreen(),

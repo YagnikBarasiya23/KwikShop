@@ -1,9 +1,10 @@
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:kwikshop/constants.dart';
 import 'package:kwikshop/screens/shop_screen.dart';
+
 class RetailerWidget extends StatefulWidget {
   RetailerWidget({required this.index, this.height = 0, this.width = 300});
   final int index;
@@ -27,10 +28,10 @@ class _RetailerWidgetState extends State<RetailerWidget> {
     'images/store8.jpg',
     'images/store9.jpg',
   ];
-  String shopName ='';
-  String shopAddress='';
-  String rating='';
-  String distance='';
+  String shopName = '';
+  String shopAddress = '';
+  String rating = '';
+  String distance = '';
 
   late final DatabaseReference _databaseReference;
 
@@ -89,7 +90,7 @@ class _RetailerWidgetState extends State<RetailerWidget> {
     return GestureDetector(
       onTap: () {
         Get.to(
-                () =>
+            () =>
                 ShopScreen(shopName: shopName, url: getRetailUrl[widget.index]),
             transition: Transition.cupertino);
       },
@@ -118,17 +119,20 @@ class _RetailerWidgetState extends State<RetailerWidget> {
                 const Divider(thickness: 0.8, height: 20, color: Colors.white),
                 Row(
                   children: [
-                    const Icon(CupertinoIcons.star_fill,
-                        color: Color(0xFFFE9D34)),
+                    const Icon(FontAwesomeIcons.solidStar, color: ratingColor),
+                    const SizedBox(width: 5),
                     Text(rating,
-                        style: kTextStyleSmall.copyWith(color: Colors.white)),
+                        style:
+                            kTextStyleSmallBold.copyWith(color: Colors.white)),
                     const SizedBox(width: 10),
                     const Icon(
-                      CupertinoIcons.stopwatch_fill,
+                      FontAwesomeIcons.stopwatch,
                       color: Color(0xFFFF5621),
                     ),
+                    const SizedBox(width: 5),
                     Text(distance,
-                        style: kTextStyleSmall.copyWith(color: Colors.white)),
+                        style:
+                            kTextStyleSmallBold.copyWith(color: Colors.white)),
                   ],
                 )
               ],

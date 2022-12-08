@@ -101,7 +101,7 @@ class HeaderWidget extends StatelessWidget {
                   border: Border.all(width: 5, color: Colors.white),
                   boxShadow: [
                     BoxShadow(
-                        offset: Offset(0, 10),
+                        offset: const Offset(0, 10),
                         blurRadius: 10,
                         color: kShadowColor.withOpacity(0.23))
                   ],
