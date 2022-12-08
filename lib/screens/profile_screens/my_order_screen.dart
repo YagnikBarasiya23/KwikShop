@@ -53,6 +53,7 @@ class OrdersScreen extends StatelessWidget {
                                 },
                                 itemCount: 1,
                                 scrollDirection: Axis.vertical,
+                                physics: const NeverScrollableScrollPhysics(),
                               ),
                             ),
                           ],
