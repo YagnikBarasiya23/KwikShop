@@ -226,6 +226,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                   'LastName': lastName.toString().trim(),
                                   'Number': number.toString(),
                                   'Pincode': pinCode.toString(),
+                                  'UserID': currentUser.toString(),
                                 };
                                 _databaseReference
                                     .child(currentUser.toString())
@@ -241,6 +242,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                   'LastName': lastName.toString().trim(),
                                   'Number': number.toString(),
                                   'Pincode': pinCode.toString(),
+                                  'UserID': currentUser.toString(),
                                 };
                                 _databaseReference
                                     .child(currentUser.toString())
