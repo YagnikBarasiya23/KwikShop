@@ -4,8 +4,8 @@ Grocery Delivery app from your nearby retail shop
 
 
 ![ss2](https://user-images.githubusercontent.com/119105452/204097704-1729a9a0-6763-4cf3-822f-4a0e43aed8df.jpg)
-![ss4](https://user-images.githubusercontent.com/119105452/206374321-2a73fdb8-a31d-4ec5-95f4-b29c334306f6.jpg)
-![ss3](https://user-images.githubusercontent.com/119105452/206374363-02c0325e-d49a-44e7-833c-b22204844934.jpg)
+![ss8](https://user-images.githubusercontent.com/119105452/208967990-c4b428d0-a872-4b4c-883a-60db490fac9d.jpg)
+![ss9](https://user-images.githubusercontent.com/119105452/208967997-bb25a830-9029-433f-ad0f-50bc5779d7b0.jpg)
 
 
 
