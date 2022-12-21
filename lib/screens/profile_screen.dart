@@ -1,14 +1,13 @@
 // ignore_for_file: deprecated_member_use
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:kwikshop/body_widgets/header_widget.dart';
 import 'package:get/get.dart';
 import 'package:kwikshop/components/profile_tile.dart';
 import 'package:kwikshop/constants.dart';
-
 import 'package:kwikshop/screens/profile_screens/about_us.dart';
 import 'package:kwikshop/screens/profile_screens/accountsetting_screen.dart';
 import 'package:kwikshop/screens/profile_screens/address.dart';
@@ -23,8 +22,8 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   late final DatabaseReference _databaseReference;
   final currentUser = FirebaseAuth.instance.currentUser!.uid;
-  String firstName = '';
-  String lastName = '';
+  late String firstName;
+  late String lastName;
   @override
   void initState() {
     _databaseReference = FirebaseDatabase.instance.reference();
@@ -64,7 +63,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         SliverAppBar(
           expandedHeight: 90,
           elevation: 0.5,
-          iconTheme: const IconThemeData(color: Colors.black),
+          automaticallyImplyLeading: false,
           flexibleSpace: Container(
             decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -85,7 +84,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     child: HeaderWidget(
                       showIcon: false,
                       height: 100,
-                      icon: CupertinoIcons.person_fill,
+                      icon: Icons.person,
                     )),
                 Column(
                   children: [
@@ -104,7 +103,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ],
                       ),
                       child: Icon(
-                        CupertinoIcons.person_fill,
+                        Icons.person,
                         size: 80,
                         color: Colors.grey.shade300,
                       ),
@@ -129,21 +128,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     transition: Transition.cupertino);
                               },
                               child: tile(
-                                  'My Orders', FontAwesomeIcons.shoppingBag)),
+                                  'My Orders', Icons.shopping_basket_rounded)),
                           GestureDetector(
                               onTap: () {
                                 Get.to(() => AddressScreen(),
                                     transition: Transition.cupertino);
                               },
-                              child: tile(
-                                  'Address', FontAwesomeIcons.addressBook)),
+                              child: tile('Address', Icons.location_on)),
                           GestureDetector(
                             onTap: () {
                               Get.to(() => AccountSettingScreen(),
                                   transition: Transition.cupertino);
                             },
-                            child: tile('Account Settings',
-                                CupertinoIcons.settings_solid),
+                            child: tile('Account Settings', Icons.settings),
                           ),
                           GestureDetector(
                               onTap: () {
@@ -156,8 +153,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Get.to(() => AboutUs(),
                                     transition: Transition.cupertino);
                               },
-                              child: tile(
-                                  'About Us', CupertinoIcons.info_circle_fill)),
+                              child: tile('About Us', Icons.info)),
                         ],
                       ),
                     )

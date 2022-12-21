@@ -1,8 +1,8 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:kwikshop/constants.dart';
+
 import 'package:kwikshop/screens/home_screen.dart';
 import 'package:kwikshop/screens/profile_screen.dart';
 import 'package:kwikshop/screens/search_screen.dart';
@@ -15,9 +15,10 @@ class NaviBar extends StatefulWidget {
 class _NaviBarState extends State<NaviBar> {
   int activeIndex = 0;
 
-  final IconData icon1 = FontAwesomeIcons.homeAlt;
-  final IconData icon2 = FontAwesomeIcons.search;
-  final IconData icon3 = FontAwesomeIcons.solidUser;
+  final IconData icon1 = Icons.home;
+  final IconData icon2 = Icons.search;
+
+  final IconData icon3 = Icons.person;
 
   final screens = [
     HomeScreen(),
@@ -34,18 +35,18 @@ class _NaviBarState extends State<NaviBar> {
             activeIndex = p0;
           });
         },
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey.shade100,
         elevation: 2.5,
         currentIndex: activeIndex,
-        iconSize: 20,
+        iconSize: 30,
         selectedItemColor: greenColor,
         selectedLabelStyle: kTextStyleSmall,
         type: BottomNavigationBarType.fixed,
-        showUnselectedLabels: false,
         items: [
           BottomNavigationBarItem(icon: Icon(icon1), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(icon2), label: 'Search'),
           BottomNavigationBarItem(icon: Icon(icon3), label: 'Profile'),
+
         ],
       ),
       body: Stack(

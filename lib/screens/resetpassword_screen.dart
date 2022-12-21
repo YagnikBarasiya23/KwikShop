@@ -5,7 +5,6 @@ import 'package:kwikshop/body_widgets/header_widget.dart';
 import 'package:kwikshop/components/our_button.dart';
 import 'package:kwikshop/constants.dart';
 
-
 class ResetPasswordScreen extends StatefulWidget {
   @override
   State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
@@ -84,9 +83,10 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                     const SizedBox(height: 20.0),
                                   ],
                                 )),
-                            GestureDetector(
-                              child: button('Reset', 300),
-                              onTap: () async {
+                            button(
+                              'Reset',
+                              300,
+                              () async {
                                 try {
                                   await FirebaseAuth.instance
                                       .sendPasswordResetEmail(

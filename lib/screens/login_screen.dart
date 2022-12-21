@@ -23,7 +23,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         reverse: true,
         child: Column(
@@ -53,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(height: 30.0),
                       Column(
                         children: [
-                          TextField(
+                          TextFormField(
                             decoration: kTextFieldDecoration.copyWith(
                                 labelText: 'Username',
                                 hintText: 'Enter your username'),
@@ -62,11 +61,20 @@ class _LoginScreenState extends State<LoginScreen> {
                                 email = value;
                               });
                             },
+                            textCapitalization: TextCapitalization.words,
                             keyboardType: TextInputType.emailAddress,
                             textInputAction: TextInputAction.done,
+                            validator: (value) {
+                              if (value != null && value.isEmpty) {
+                                return 'Enter your First Name';
+                              } else {
+                                return null;
+                              }
+                            },
                           ),
                           const SizedBox(height: 20.0),
-                          TextField(
+                          TextFormField(
+                            textCapitalization: TextCapitalization.words,
                             textInputAction: TextInputAction.done,
                             obscureText: visiblePassword,
                             decoration: kTextFieldDecoration.copyWith(
@@ -92,6 +100,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                 password = value;
                               });
                             },
+                            validator: (value) {
+                              if (value != null && value.isEmpty) {
+                                return 'Enter your First Name';
+                              } else {
+                                return null;
+                              }
+                            },
                           ),
                           const SizedBox(height: 15.0),
                           Container(
@@ -109,9 +124,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ],
                       ),
-                      GestureDetector(
-                        child: button('Sign In', 300),
-                        onTap: () async {
+                      button(
+                        'Sign In',
+                        300,
+                        () async {
                           try {
                             final signIn = await FirebaseAuth.instance
                                 .signInWithEmailAndPassword(

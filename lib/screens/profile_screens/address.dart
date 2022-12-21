@@ -1,37 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kwikshop/body_widgets/header_widget.dart';
-
-import 'package:get/get.dart';
 import 'package:kwikshop/components/address_container.dart';
 import 'package:kwikshop/constants.dart';
 
-import 'package:kwikshop/screens/add_detail_screen.dart';
-
 class AddressScreen extends StatelessWidget {
-  int flag = 0;
-  int length = 1;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            actions: [
-              IconButton(
-                  onPressed: () {
-                    Get.to(() => DetailsScreen(flag: flag = 1),
-                        transition: Transition.cupertino);
-                  },
-                  icon: Icon(
-                    CupertinoIcons.pencil,
-                    color: Colors.amber.shade700,
-                    size: 23,
-                  )),
-            ],
             title: const Text('Addresses', style: kTextStyleHeaders),
-            elevation: 0.5,
             iconTheme: const IconThemeData(color: Colors.black),
             flexibleSpace: Container(
               decoration: BoxDecoration(
@@ -65,7 +44,7 @@ class AddressScreen extends StatelessWidget {
                               height: 165,
                               child: ListView.builder(
                                 itemBuilder: (context, index) {
-                                  return AddressContainer(index: index);
+                                  return AddressContainer();
                                 },
                                 itemCount: 1,
                                 scrollDirection: Axis.vertical,

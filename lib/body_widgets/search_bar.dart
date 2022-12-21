@@ -6,16 +6,14 @@ import 'package:kwikshop/components/retailer_widget.dart';
 
 class SearchBar extends SearchDelegate {
   final List<String> suggestions = [
-    'Emart',
+    'Dmart',
     'Frozen World',
-    'Vikram Brothers',
+    'Vikram Provision Store',
     'Krushna General Store',
-    'Dev general store',
-    'All in one general store',
-    'Umart',
+    'Osia Mart',
+    'All in one General Store',
     'Shiv Provision Store',
     'Golden Supermarket',
-    'JayMataji General Store',
   ];
   List<String> recent = [];
 
@@ -51,36 +49,30 @@ class SearchBar extends SearchDelegate {
     final suggestion = query.isEmpty
         ? recent
         : suggestions.where((element) => element.startsWith(query)).toList();
-    if (query == 'Emart' || suggestion[0] == 'Emart') {
+    if (query == 'Dmart' || suggestion[0] == 'Dmart') {
       index = 0;
     } else if (query == 'Frozen World' || suggestion[0] == 'Frozen World') {
-      index = 1;
+      index = 4;
     } else if (query == 'Krushna General Store' ||
         suggestion[0] == 'Krushna General Store') {
+      index = 1;
+    } else if (query == 'Vikram Provision Store' ||
+        suggestion[0] == 'Vikram Provision Store') {
       index = 2;
-    } else if (query == 'Vikram Brothers' ||
-        suggestion[0] == 'Vikram Brothers') {
-      index = 3;
-    } else if (query == 'Dev general store' ||
-        suggestion[0] == 'Dev general store') {
-      index = 4;
-    } else if (query == 'All in one general store' ||
-        suggestion[0] == 'All in one general store') {
+    } else if (query == 'Osia Mart' || suggestion[0] == 'Osia Mart') {
       index = 5;
-    } else if (query == 'Umart' || suggestion[0] == 'Umart') {
+    } else if (query == 'All in one General Store' ||
+        suggestion[0] == 'All in one General Store') {
       index = 6;
     } else if (query == 'Shiv Provision Store' ||
         suggestion[0] == 'Shiv Provision Store') {
       index = 7;
-    } else if (query == 'Golden Supermarket' ||
-        suggestion[0] == 'Golden Supermarket') {
-      index = 8;
     } else if (query == 'JayMataji General Store' ||
         suggestion[0] == 'JayMataji General Store') {
       index = 9;
     }
     recent.add(query);
-    return RetailerWidget(index: index, height: 200, width: 380);
+    return RetailerWidget(index: index, width: 380);
   }
 
   @override

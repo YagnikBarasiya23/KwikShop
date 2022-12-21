@@ -33,12 +33,7 @@ class SearchScreen extends StatelessWidget {
                   margin: const EdgeInsets.all(5),
                   alignment: Alignment.centerLeft,
                   padding: const EdgeInsets.all(16),
-                  decoration: kContainerDecoration.copyWith(boxShadow: [
-                    BoxShadow(
-                        offset: const Offset(0, 10),
-                        blurRadius: 10,
-                        color: kShadowColor.withOpacity(0.23))
-                  ]),
+                  decoration: kContainerDecoration,
                   child: const Icon(CupertinoIcons.search),
                 ),
               ),
@@ -63,38 +58,32 @@ class SearchScreen extends StatelessWidget {
                               name: CategoriesClass.getCategory[index].name,
                             ));
                       },
-                      child: Card(
-                        elevation: 2.5,
+                      child: Container(
                         margin: const EdgeInsets.all(5),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
+                        decoration: kContainerDecoration.copyWith(
+                          color: CategoriesClass.getCategory[index].color,
                         ),
-                        child: Container(
-                          decoration: kContainerDecoration.copyWith(
-                            color: CategoriesClass.getCategory[index].color,
-                          ),
-                          width: 200,
-                          height: 83,
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(CategoriesClass.getCategory[index].name,
-                                    style: kTextStyleSmallBold),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Image(
-                                      image: NetworkImage(CategoriesClass
-                                          .getCategory[index].image),
-                                      width: 50,
-                                      height: 40,
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
+                        width: 200,
+                        height: 83,
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(CategoriesClass.getCategory[index].name,
+                                  style: kTextStyleSmallBold),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Image(
+                                    image: NetworkImage(CategoriesClass
+                                        .getCategory[index].image),
+                                    width: 50,
+                                    height: 40,
+                                  ),
+                                ],
+                              )
+                            ],
                           ),
                         ),
                       ),

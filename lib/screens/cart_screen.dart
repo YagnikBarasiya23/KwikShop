@@ -1,20 +1,16 @@
 // ignore_for_file: deprecated_member_use
-
-import 'package:badges/badges.dart';
 import 'package:intl/intl.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kwikshop/body_widgets/navigation_bar.dart';
-import 'package:kwikshop/components/address_container.dart';
 import 'package:kwikshop/components/our_button.dart';
 import 'package:kwikshop/constants.dart';
 import 'package:kwikshop/models/cart_controller.dart';
 import 'package:kwikshop/models/product_model.dart';
-import 'package:kwikshop/screens/add_detail_screen.dart';
+import 'package:kwikshop/screens/checkout_screen.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class CartScreen extends StatefulWidget {
@@ -26,15 +22,15 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+  late String product;
+  late String image;
+  late String price;
+  late String quantity;
+
+  final CartController _controller = Get.find();
   late final DatabaseReference _databaseReference =
       FirebaseDatabase.instance.ref().child('Cart');
-  String product = '';
-  String image = '';
-  String price = '';
-  String quantity = '';
-
   final currentId = FirebaseAuth.instance.currentUser!.uid;
-
   setJson(int length) {
     _databaseReference
         .child(currentId)
@@ -55,30 +51,6 @@ class _CartScreenState extends State<CartScreen> {
     });
   }
 
-  Icon? icon;
-  double elevation = 0;
-  Color colour = Colors.grey.shade100;
-
-  checkMark() {
-    setState(() {
-      if ((icon == null && elevation == 0 && colour == Colors.grey.shade100)) {
-        icon = const Icon(
-          CupertinoIcons.checkmark_alt,
-          color: greenColor,
-        );
-        colour = Colors.white;
-        elevation = 5;
-      } else {
-        icon = null;
-        elevation = 0;
-        colour = Colors.grey.shade100;
-      }
-    });
-  }
-
-  int activeIndex = 0;
-  final CartController _controller = Get.find();
-
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -87,11 +59,8 @@ class _CartScreenState extends State<CartScreen> {
           slivers: [
             SliverAppBar(
               title: Text('${widget.shopName}', style: kTextStyleHeaders),
-              elevation: 0.5,
               iconTheme: const IconThemeData(color: Colors.black),
-              flexibleSpace: Container(
-                color: Colors.grey.shade100,
-              ),
+              backgroundColor: Colors.transparent,
             ),
             SliverToBoxAdapter(
               child: _controller.product.length == 0
@@ -112,10 +81,12 @@ class _CartScreenState extends State<CartScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10, right: 10),
-                            child: SizedBox(
-                              height: 260,
+                          SizedBox(
+                            height: 520,
+                            width: double.maxFinite,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 20, right: 20),
                               child: ListView.builder(
                                 itemBuilder: (context, index) {
                                   price = _controller.productSubTotal[index]
@@ -141,100 +112,14 @@ class _CartScreenState extends State<CartScreen> {
                                       _controller.product.keys.toList()[index]);
                                 },
                                 itemCount: _controller.product.length,
+                                physics: const NeverScrollableScrollPhysics(),
                               ),
                             ),
                           ),
                           const SizedBox(height: 30),
-                          Row(
-                            children: [
-                              const Padding(
-                                padding: EdgeInsets.only(
-                                    top: 3, left: 18, right: 4, bottom: 6),
-                                child: Text(
-                                  'Delivery Address',
-                                  style: kTextStyleHeaders,
-                                ),
-                              ),
-                              IconButton(
-                                onPressed: () {
-                                  Get.to(() => DetailsScreen(flag: flag = 1),
-                                      transition: Transition.cupertino);
-                                },
-                                icon: Icon(
-                                  FontAwesomeIcons.solidEdit,
-                                  color: mainColor,
-                                  size: 20,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 12, right: 12),
-                            child: AddressContainer(
-                              index: 0,
-                            ),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.only(
-                                top: 10, left: 18, right: 4, bottom: 6),
-                            child: Text(
-                              'Payment Method',
-                              style: kTextStyleHeaders,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 12, right: 12),
-                            child: Badge(
-                              elevation: elevation,
-                              badgeColor: colour,
-                              badgeContent: icon,
-                              animationType: BadgeAnimationType.fade,
-                              child: GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    flag = 1;
-                                  });
-                                  checkMark();
-                                },
-                                child: Container(
-                                  height: 102,
-                                  margin: const EdgeInsets.all(5),
-                                  decoration:
-                                      kContainerDecoration.copyWith(boxShadow: [
-                                    BoxShadow(
-                                        offset: const Offset(0, 10),
-                                        blurRadius: 5,
-                                        color: kShadowColor.withOpacity(0.23))
-                                  ]),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(36.0),
-                                    child: Column(
-                                      children: [
-                                        Row(
-                                          children: [
-                                            const Icon(
-                                              FontAwesomeIcons.moneyBill1,
-                                              size: 30,
-                                              color: greenColor,
-                                            ),
-                                            const SizedBox(width: 30),
-                                            Text('Cash on Delivery',
-                                                style: kTextStyleLarge.copyWith(
-                                                    fontWeight: FontWeight.w500,
-                                                    color: Colors.black)),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 15),
                           Padding(
                             padding: const EdgeInsets.only(
-                                top: 10, left: 18, right: 18, bottom: 6),
+                                top: 10, left: 25, right: 25, bottom: 6),
                             child: Column(
                               children: [
                                 Row(
@@ -259,74 +144,13 @@ class _CartScreenState extends State<CartScreen> {
                                   ],
                                 ),
                                 const SizedBox(height: 10),
-                                GestureDetector(
-                                  child:
-                                      Center(child: button('Place Order', 330)),
-                                  onTap: () {
-                                    if (flag == 0) {
-                                      Get.snackbar(
-                                        'Cannot continue',
-                                        'Please select address and payment options',
-                                        duration: const Duration(seconds: 2),
-                                        snackPosition: SnackPosition.BOTTOM,
-                                        margin: const EdgeInsets.all(7),
-                                      );
-                                    } else {
-                                      Alert(
-                                          context: context,
-                                          buttons: [
-                                            DialogButton(
-                                              onPressed: () async {
-                                                Get.offAll(() => NaviBar(),
-                                                    transition:
-                                                        Transition.cupertino);
-                                                _controller.product.clear();
-                                              },
-                                              color: mainColor,
-                                              radius: const BorderRadius.all(
-                                                  Radius.circular(20)),
-                                              child: const Text('Back to Home'),
-                                            ),
-                                          ],
-                                          image: const Image(
-                                            image: AssetImage(
-                                                'images/success.png'),
-                                            width: 300,
-                                            height: 130,
-                                            fit: BoxFit.cover,
-                                          ),
-                                          title: 'Order Successful',
-                                          desc:
-                                              'Thank you so much for your order',
-                                          style: const AlertStyle(
-                                            animationType: AnimationType.shrink,
-                                            titleStyle: kTextStyleLarge,
-                                          ),
-                                          closeFunction: () {
-                                            Get.back();
-                                          }).show();
-
-                                      _databaseReference
-                                          .child(currentId)
-                                          .child('0')
-                                          .child('TotalPrice')
-                                          .set(_controller.Total);
-                                      _databaseReference
-                                          .child(currentId)
-                                          .child('0')
-                                          .child('Date')
-                                          .set(DateFormat('dd-MM-yyyy')
-                                              .format(DateTime.now()));
-                                      _databaseReference
-                                          .child(currentId)
-                                          .child('0')
-                                          .child('Time')
-                                          .set(DateFormat('KK:mm a')
-                                              .format(DateTime.now()));
-                                      flag = 1;
-                                    }
-                                  },
-                                ),
+                                Center(
+                                    child: button(
+                                  'Checkout',
+                                  330,
+                                  () => Get.off(() => CheckoutScreen(),
+                                      transition: Transition.cupertino),
+                                )),
                               ],
                             ),
                           )
@@ -348,13 +172,8 @@ Widget cartCatalog(
   return Container(
     height: 90,
     padding: const EdgeInsets.all(16),
-    margin: const EdgeInsets.only(left: 5, right: 5, bottom: 5, top: 0),
-    decoration: kContainerDecoration.copyWith(boxShadow: [
-      BoxShadow(
-          offset: const Offset(0, 10),
-          blurRadius: 5,
-          color: kShadowColor.withOpacity(0.23))
-    ]),
+    margin: const EdgeInsets.all(5),
+    decoration: kContainerDecoration,
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -386,7 +205,7 @@ Widget cartCatalog(
                   controller.addProducts(product);
                 },
                 child: Icon(
-                  FontAwesomeIcons.circlePlus,
+                  Icons.add_circle,
                   color: mainColor,
                   size: 20,
                 )),
@@ -399,7 +218,7 @@ Widget cartCatalog(
                   controller.removeProducts(product);
                 },
                 child: Icon(
-                  FontAwesomeIcons.circleMinus,
+                  Icons.remove_circle,
                   color: mainColor,
                   size: 20,
                 )),

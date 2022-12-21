@@ -51,7 +51,7 @@ class AboutUs extends StatelessWidget {
                                   launchUrl(url);
                                 },
                                 child: tile(
-                                    'Privacy Policy', CupertinoIcons.lock)),
+                                    'Privacy Policy', Icons.lock)),
                             GestureDetector(
                               onTap: () {
                                 Uri url = Uri.parse(
@@ -59,7 +59,7 @@ class AboutUs extends StatelessWidget {
                                 launchUrl(url);
                               },
                               child: tile('Terms and Conditions',
-                                  CupertinoIcons.checkmark_seal_fill),
+                                  Icons.verified_user_rounded),
                             ),
                           ],
                         ),

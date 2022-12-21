@@ -1,14 +1,15 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:kwikshop/constants.dart';
+
 import 'package:kwikshop/screens/shop_screen.dart';
 
 class RetailerWidget extends StatefulWidget {
-  RetailerWidget({required this.index, this.height = 0, this.width = 300});
+  RetailerWidget({required this.index, this.width = 300});
   final int index;
-  final double height;
   final double width;
 
   @override
@@ -28,16 +29,16 @@ class _RetailerWidgetState extends State<RetailerWidget> {
     'images/store8.jpg',
     'images/store9.jpg',
   ];
-  String shopName = '';
-  String shopAddress = '';
-  String rating = '';
-  String distance = '';
+  String? shopName;
+  late String shopAddress;
+  late double rating;
+  late String type;
 
-  late final DatabaseReference _databaseReference;
+  final DatabaseReference _databaseReference =
+      FirebaseDatabase.instance.reference();
 
   @override
   void initState() {
-    _databaseReference = FirebaseDatabase.instance.reference();
     _readDatabase(widget.index);
     super.initState();
   }
@@ -46,7 +47,7 @@ class _RetailerWidgetState extends State<RetailerWidget> {
     _databaseReference
         .child('Stores')
         .child(index.toString())
-        .child('name')
+        .child('Name')
         .once()
         .then((DatabaseEvent databaseEvent) {
       setState(() {
@@ -56,7 +57,7 @@ class _RetailerWidgetState extends State<RetailerWidget> {
     _databaseReference
         .child('Stores')
         .child(index.toString())
-        .child('address')
+        .child('Address')
         .once()
         .then((DatabaseEvent databaseEvent) {
       setState(() {
@@ -66,27 +67,39 @@ class _RetailerWidgetState extends State<RetailerWidget> {
     _databaseReference
         .child('Stores')
         .child(index.toString())
-        .child('rating')
+        .child('Rating')
         .once()
         .then((DatabaseEvent databaseEvent) {
       setState(() {
-        rating = databaseEvent.snapshot.value.toString();
+        rating = databaseEvent.snapshot.value as double;
       });
     });
     _databaseReference
         .child('Stores')
         .child(index.toString())
-        .child('delivery_time')
+        .child('Type')
         .once()
         .then((DatabaseEvent databaseEvent) {
       setState(() {
-        distance = databaseEvent.snapshot.value.toString();
+        type = databaseEvent.snapshot.value.toString();
       });
+    });
+  }
+
+  Color? color;
+  void setRatingColor() {
+    setState(() {
+      if (rating >= 4.0) {
+        color = const Color(0xff2FB47A);
+      } else {
+        color = const Color(0xffDB805E);
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    setRatingColor();
     return GestureDetector(
       onTap: () {
         Get.to(
@@ -94,50 +107,77 @@ class _RetailerWidgetState extends State<RetailerWidget> {
                 ShopScreen(shopName: shopName, url: getRetailUrl[widget.index]),
             transition: Transition.cupertino);
       },
-      child: Card(
-        elevation: 2.5,
+      child: Container(
+        width: widget.width,
+        height: 250,
         margin: const EdgeInsets.all(5),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        child: Container(
-          width: widget.width,
-          height: widget.height,
-          decoration: kContainerDecoration.copyWith(
-            image: DecorationImage(
-                image: AssetImage(getRetailUrl[widget.index]),
-                fit: BoxFit.fill),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
+        decoration: kContainerDecoration,
+        child: Stack(
+          children: [
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(shopName,
-                    style: kTextStyleLarge.copyWith(color: Colors.white)),
-                Text(shopAddress,
-                    style: kTextStyleSmall.copyWith(color: Colors.white)),
-                const Divider(thickness: 0.8, height: 20, color: Colors.white),
-                Row(
-                  children: [
-                    const Icon(FontAwesomeIcons.solidStar, color: ratingColor),
-                    const SizedBox(width: 5),
-                    Text(rating,
-                        style:
-                            kTextStyleSmallBold.copyWith(color: Colors.white)),
-                    const SizedBox(width: 10),
-                    const Icon(
-                      FontAwesomeIcons.stopwatch,
-                      color: Color(0xFFFF5621),
+                Container(
+                  width: widget.width,
+                  height: 149,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(
+                        getRetailUrl[widget.index],
+                      ),
+                      fit: BoxFit.fitWidth,
                     ),
-                    const SizedBox(width: 5),
-                    Text(distance,
-                        style:
-                            kTextStyleSmallBold.copyWith(color: Colors.white)),
-                  ],
-                )
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(15),
+                      topRight: Radius.circular(15),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 18, top: 18, bottom: 10),
+                  child: Text(shopName.toString(), style: kTextStyleLarge),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 18),
+                  child: Row(
+                    children: [
+                      Icon(Icons.store_mall_directory_outlined,
+                          color: mainColor),
+                      Text(
+                        type,
+                        style: kTextStyleSmallBold.copyWith(color: Colors.grey),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.only(left: 6, right: 3),
+                        child: Icon(
+                          Icons.circle,
+                          color: Colors.grey,
+                          size: 7,
+                        ),
+                      ),
+                      Icon(
+                        Icons.location_on_outlined,
+                        color: mainColor,
+                      ),
+                      Text(shopAddress,
+                          style:
+                              kTextStyleSmallBold.copyWith(color: Colors.grey)),
+                    ],
+                  ),
+                ),
               ],
             ),
-          ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10, left: 20),
+              child: CircleAvatar(
+                backgroundColor: color,
+                child: Text(
+                  rating.toString(),
+                  style: kTextStyleSmall,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

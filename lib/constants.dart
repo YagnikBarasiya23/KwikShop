@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 
 const kTextStyleHeadings = TextStyle(
     color: Colors.black,
@@ -28,13 +28,18 @@ const kTextStyleSmallBold = TextStyle(
     fontFamily: 'Poppins');
 const kContainerDecoration = BoxDecoration(
   color: Colors.white,
-  borderRadius: BorderRadius.all(Radius.circular(15)),
+  borderRadius: BorderRadius.all(
+    Radius.circular(15),
+  ),
+  boxShadow: [
+    BoxShadow(color: Colors.black26, blurRadius: 5, offset: Offset(4, 4))
+  ],
 );
 const kShadowColor = Colors.black;
 const kTextFieldDecoration = InputDecoration(
   labelText: 'lableText',
   hintText: 'hintText',
-  fillColor: Colors.white,
+  fillColor: Colors.transparent,
   filled: true,
   contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
   focusedBorder: OutlineInputBorder(
@@ -55,4 +60,5 @@ const accentColor = Color(0xFF64FFDA);
 final mainColor = Colors.amber.shade800;
 const greenColor = Color(0xFF64C41C);
 const ratingColor = Color(0xFFFE9D34);
-const leftArrowIcon = Icon(FontAwesomeIcons.arrowLeftLong,color: Colors.white,size: 25);
+const leftArrowIcon =
+    Icon(Icons.arrow_back, color: Colors.white, size: 25);

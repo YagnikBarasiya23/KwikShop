@@ -7,9 +7,8 @@ import 'package:get/get.dart';
 import 'package:kwikshop/body_widgets/header_widget.dart';
 import 'package:kwikshop/components/profile_tile.dart';
 import 'package:kwikshop/constants.dart';
-
 import 'package:kwikshop/screens/resetpassword_screen.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 
 class AccountSettingScreen extends StatelessWidget {
   @override
@@ -55,13 +54,13 @@ class AccountSettingScreen extends StatelessWidget {
                                       transition: Transition.cupertino);
                                 },
                                 child: tile('Reset Password',
-                                    CupertinoIcons.lock_rotation)),
+                                    Icons.lock_reset)),
                             GestureDetector(
                               onTap: () {
                                 FirebaseAuth.instance.signOut();
                                 Get.back();
                               },
-                              child: tile('Sign Out', FontAwesomeIcons.signOut),
+                              child: tile('Sign Out', Icons.logout),
                             ),
                           ],
                         ),

@@ -2,9 +2,8 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:kwikshop/constants.dart';
 import 'package:kwikshop/models/cart_controller.dart';
 import 'package:kwikshop/models/product_model.dart';
@@ -22,36 +21,30 @@ class ShopScreen extends StatelessWidget {
   int id = 0;
   int length = 0;
   void setID() {
-    if (shopName == 'Emart') {
+    if (shopName == 'Dmart') {
       id = 0;
-      length = 33;
-    } else if (shopName == 'Frozen World') {
-      id = 1;
-      length = 12;
+      length = 20;
     } else if (shopName == 'Krushna General Store') {
+      id = 1;
+      length = 6;
+    } else if (shopName == 'Vikram Provision Store') {
       id = 2;
-      length = 9;
-    } else if (shopName == 'Vikram Brothers') {
+      length = 14;
+    } else if (shopName == 'Golden Supermarket') {
       id = 3;
-      length = 9;
-    } else if (shopName == 'Dev general store') {
+      length = 6;
+    } else if (shopName == 'Krushna General Store') {
       id = 4;
-      length = 15;
-    } else if (shopName == 'All in one general store') {
-      id = 5;
       length = 12;
-    } else if (shopName == 'Umart') {
+    } else if (shopName == 'All in one General Store') {
+      id = 5;
+      length = 20;
+    } else if (shopName == 'Osia Mart') {
       id = 6;
-      length = 30;
+      length = 20;
     } else if (shopName == 'Shiv Provision Store') {
       id = 7;
-      length = 15;
-    } else if (shopName == 'Golden Supermarket') {
-      id = 8;
-      length = 27;
-    } else if (shopName == 'JayMataji General Store') {
-      id = 9;
-      length = 18;
+      length = 20;
     }
   }
 
@@ -62,8 +55,7 @@ class ShopScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            shadowColor: Colors.black,
-            elevation: 2.5,
+            forceElevated: true,
             expandedHeight: 220,
             leading: IconButton(
                 onPressed: () {
@@ -93,7 +85,7 @@ class ShopScreen extends StatelessWidget {
                             transition: Transition.cupertino);
                       },
                       child: const Icon(
-                        FontAwesomeIcons.cartShopping,
+                        Icons.shopping_cart,
                         color: Colors.white,
                         size: 30,
                       ),
@@ -102,23 +94,25 @@ class ShopScreen extends StatelessWidget {
             ],
           ),
           SliverToBoxAdapter(
-              child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: MasonryGridView.builder(
-              scrollDirection: Axis.vertical,
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              mainAxisSpacing: 2,
-              crossAxisSpacing: 2,
-              gridDelegate:
-                  const SliverSimpleGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2),
-              itemBuilder: (context, index) {
-                return ItemCard(index: index, controller: _controller, id: id);
-              },
-              itemCount: length,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: MasonryGridView.builder(
+                scrollDirection: Axis.vertical,
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                mainAxisSpacing: 2,
+                crossAxisSpacing: 2,
+                gridDelegate:
+                    const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2),
+                itemBuilder: (context, index) {
+                  return ItemCard(
+                      index: index, controller: _controller, id: id);
+                },
+                itemCount: length,
+              ),
             ),
-          ))
+          )
         ],
       ),
     );
@@ -140,14 +134,15 @@ class ItemCard extends StatefulWidget {
 }
 
 class _ItemCardState extends State<ItemCard> {
-  String productName = '';
-  int productPrice = 0;
-  String image = 'https://wallpaperaccess.com/full/1556608.jpg';
-  late final DatabaseReference _databaseReference;
+  String? productName;
+  late int productPrice;
+  late String image;
+  late String currency;
+  late final DatabaseReference _databaseReference =
+      FirebaseDatabase.instance.reference();
 
   @override
   void initState() {
-    _databaseReference = FirebaseDatabase.instance.reference();
     _readDatabase(widget.index);
     super.initState();
   }
@@ -156,9 +151,9 @@ class _ItemCardState extends State<ItemCard> {
     _databaseReference
         .child('Stores')
         .child(widget.id.toString())
-        .child('items')
+        .child('Items')
         .child(index.toString())
-        .child('name')
+        .child('Name')
         .once()
         .then((DatabaseEvent databaseEvent) {
       setState(() {
@@ -168,9 +163,21 @@ class _ItemCardState extends State<ItemCard> {
     _databaseReference
         .child('Stores')
         .child(widget.id.toString())
-        .child('items')
+        .child('Items')
         .child(index.toString())
-        .child('price')
+        .child('Currency')
+        .once()
+        .then((DatabaseEvent databaseEvent) {
+      setState(() {
+        currency = databaseEvent.snapshot.value.toString();
+      });
+    });
+    _databaseReference
+        .child('Stores')
+        .child(widget.id.toString())
+        .child('Items')
+        .child(index.toString())
+        .child('Price')
         .once()
         .then((DatabaseEvent databaseEvent) {
       setState(() {
@@ -180,9 +187,9 @@ class _ItemCardState extends State<ItemCard> {
     _databaseReference
         .child('Stores')
         .child(widget.id.toString())
-        .child('items')
+        .child('Items')
         .child(index.toString())
-        .child('image')
+        .child('Image')
         .once()
         .then((DatabaseEvent databaseEvent) {
       setState(() {
@@ -193,69 +200,76 @@ class _ItemCardState extends State<ItemCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 200,
-      margin: const EdgeInsets.all(7),
-      padding: const EdgeInsets.only(top: 5, right: 3, left: 3),
-      decoration: kContainerDecoration.copyWith(boxShadow: [
-        BoxShadow(
-            offset: const Offset(0, 10),
-            blurRadius: 10,
-            color: kShadowColor.withOpacity(0.23))
-      ]),
-      child: Padding(
-        padding: const EdgeInsets.only(top: 8, bottom: 10, left: 8, right: 8),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+    return productName == null
+        ? const Center(
+            child: CircularProgressIndicator(
+              color: greenColor,
+            ),
+          )
+        : Container(
+            height: 200,
+            margin: const EdgeInsets.all(7),
+            padding: const EdgeInsets.only(top: 5, right: 3, left: 3),
+            decoration: kContainerDecoration,
+            child: FittedBox(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                    top: 8, bottom: 10, left: 11, right: 12),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Image(
-                        image: NetworkImage(image),
-                        width: 110,
-                        height: 135,
-                        fit: BoxFit.fill),
-                    Text(productName,
-                        style: kTextStyleSmall.copyWith(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
-                        )),
-                    Text('${productPrice}rs', style: kTextStyleSmall)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Image(
+                                image: NetworkImage(image),
+                                width: 110,
+                                height: 135,
+                                fit: BoxFit.fill),
+                            Text(productName.toString(),
+                                style: kTextStyleSmall.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14,
+                                )),
+                            Text('$currency$productPrice',
+                                style: kTextStyleSmall)
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            GestureDetector(
+                                onTap: () {
+                                  Products.getProducts.add(Products(
+                                      image: image,
+                                      productName: productName.toString(),
+                                      productPrice: productPrice));
+                                  widget.controller.addProducts(
+                                      Products.getProducts[
+                                          Products.getProducts.length - 1]);
+                                  _databaseReference
+                                      .child('Cart')
+                                      .child(FirebaseAuth
+                                          .instance.currentUser!.uid)
+                                      .child('0')
+                                      .remove();
+                                },
+                                child: Icon(
+                                  Icons.add_circle,
+                                  size: 30,
+                                  color: mainColor,
+                                )),
+                          ],
+                        ),
+                      ],
+                    )
                   ],
                 ),
-                Row(
-                  children: [
-                    GestureDetector(
-                        onTap: () {
-                          Products.getProducts.add(Products(
-                              image: image,
-                              productName: productName,
-                              productPrice: productPrice));
-                          widget.controller.addProducts(Products
-                              .getProducts[Products.getProducts.length - 1]);
-                          _databaseReference
-                              .child('Cart')
-                              .child(FirebaseAuth.instance.currentUser!.uid)
-                              .child('0')
-                              .remove();
-                        },
-                        child: Icon(
-                          FontAwesomeIcons.circlePlus,
-                          size: 30,
-                          color: mainColor,
-                        )),
-                  ],
-                ),
-              ],
-            )
-          ],
-        ),
-      ),
-    );
+              ),
+            ),
+          );
   }
 }

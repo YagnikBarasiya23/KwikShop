@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:kwikshop/components/retailer_widget.dart';
 import 'package:kwikshop/constants.dart';
 
-
 class OfferBenefitsScreen extends StatelessWidget {
   OfferBenefitsScreen({this.index = 0});
   final int index;
@@ -12,13 +11,11 @@ class OfferBenefitsScreen extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(
-            title: const Text('Offer&Benefits', style: kTextStyleHeaders),
-            elevation: 0.5,
-            iconTheme: const IconThemeData(color: Colors.black),
-            flexibleSpace: Container(
-              color: Colors.grey.shade100,
-            ),
+          const SliverAppBar(
+            title: Text('Offer&Benefits', style: kTextStyleHeaders),
+
+            iconTheme: IconThemeData(color: Colors.black),
+            backgroundColor:  Colors.transparent,
           ),
           SliverToBoxAdapter(
             child: SingleChildScrollView(
@@ -41,31 +38,30 @@ Widget getStores(int index) {
   if (index == 2) {
     return Column(
       children: [
-        RetailerWidget(index: 0, height: 200, width: 380),
-        RetailerWidget(index: 1, height: 200, width: 380),
-        RetailerWidget(index: 2, height: 200, width: 380),
-        RetailerWidget(index: 3, height: 200, width: 380),
-        RetailerWidget(index: 4, height: 200, width: 380),
-        RetailerWidget(index: 5, height: 200, width: 380),
-        RetailerWidget(index: 7, height: 200, width: 380),
-        RetailerWidget(index: 8, height: 200, width: 380),
-        RetailerWidget(index: 9, height: 200, width: 380),
+        RetailerWidget(index: 0, width: 380),
+        RetailerWidget(index: 1, width: 380),
+        RetailerWidget(index: 2, width: 380),
+        RetailerWidget(index: 3, width: 380),
+        RetailerWidget(index: 4, width: 380),
+        RetailerWidget(index: 5, width: 380),
+        RetailerWidget(index: 7, width: 380),
+
       ],
     );
   } else if (index == 1) {
     return Column(
       children: [
-        RetailerWidget(index: 0, height: 200, width: 380),
-        RetailerWidget(index: 1, height: 200, width: 380),
+        RetailerWidget(index: 4, width: 380),
+        RetailerWidget(index: 6, width: 380),
       ],
     );
   } else if (index == 0) {
     return Column(
       children: [
-        RetailerWidget(index: 0, height: 200, width: 380),
-        RetailerWidget(index: 1, height: 200, width: 380),
-        RetailerWidget(index: 2, height: 200, width: 380),
-        RetailerWidget(index: 3, height: 200, width: 380),
+        RetailerWidget(index: 8, width: 380),
+        RetailerWidget(index: 1, width: 380),
+        RetailerWidget(index: 7, width: 380),
+        RetailerWidget(index: 3, width: 380),
       ],
     );
   }

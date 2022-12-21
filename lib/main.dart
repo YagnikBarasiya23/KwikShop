@@ -6,6 +6,7 @@ import 'package:kwikshop/body_widgets/main_page.dart';
 import 'package:kwikshop/constants.dart';
 
 void main() async {
+  ErrorWidget.builder = (details) => const Material();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
@@ -21,7 +22,7 @@ class KwikShop extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primaryColor: primaryColor,
-          scaffoldBackgroundColor: Colors.grey.shade100,
+          scaffoldBackgroundColor: Colors.white,
           colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.grey)
               .copyWith(secondary: accentColor)),
       home: MainPage(),

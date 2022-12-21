@@ -1,126 +1,100 @@
-import 'package:badges/badges.dart';
+// ignore_for_file: deprecated_member_use
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kwikshop/constants.dart';
 
 class AddressContainer extends StatefulWidget {
-  AddressContainer({required this.index});
-  final int index;
   @override
   State<AddressContainer> createState() => _AddressContainerState();
 }
 
 class _AddressContainerState extends State<AddressContainer> {
-  Icon? icon;
-  double elevation = 0;
-  Color colour = Colors.grey.shade100;
-  int flag = 0;
-  String homeName = '';
-  String pinCode = '';
-  String streetName = '';
-  late final DatabaseReference _databaseReference;
+  String? name;
+  late String postalCode;
+  late String street;
+  late String city;
+  final DatabaseReference _databaseReference =
+      FirebaseDatabase.instance.reference();
   final currentUser = FirebaseAuth.instance.currentUser!.uid;
 
-  badgeFunction() {
-    setState(() {
-      if ((icon == null && elevation == 0 && colour == Colors.grey.shade100)) {
-        icon = const Icon(
-          CupertinoIcons.checkmark_alt,
-          color: Color(0xFFF26bf47),
-        );
-        colour = Colors.white;
-        elevation = 5;
-      } else {
-        icon = null;
-        elevation = 0;
-        colour = Colors.grey.shade100;
-      }
-    });
-  }
-
-  readDatabase(int index) {
+  readDatabase() {
     _databaseReference
         .child('Details')
         .child(currentUser.toString())
-        .child(index.toString())
-        .child('HomeName')
+        .child('Location')
+        .child('Name')
         .once()
         .then((value) {
       setState(() {
-        homeName = value.snapshot.value.toString();
+        name = value.snapshot.value.toString();
       });
     });
     _databaseReference
         .child('Details')
         .child(currentUser.toString())
-        .child(index.toString())
-        .child('StreetName')
+        .child('Location')
+        .child('Street')
         .once()
         .then((value) {
       setState(() {
-        streetName = value.snapshot.value.toString();
+        street = value.snapshot.value.toString();
       });
     });
     _databaseReference
         .child('Details')
         .child(currentUser.toString())
-        .child(index.toString())
-        .child('Pincode')
+        .child('Location')
+        .child('PostalCode')
         .once()
         .then((value) {
       setState(() {
-        pinCode = value.snapshot.value.toString();
+        postalCode = value.snapshot.value.toString();
+      });
+    });
+    _databaseReference
+        .child('Details')
+        .child(currentUser.toString())
+        .child('Location')
+        .child('City')
+        .once()
+        .then((value) {
+      setState(() {
+        city = value.snapshot.value.toString();
       });
     });
   }
 
   @override
   void initState() {
-    _databaseReference = FirebaseDatabase.instance.reference();
-    readDatabase(widget.index);
+    readDatabase();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Badge(
-      elevation: elevation,
-      badgeColor: colour,
-      badgeContent: icon,
-      child: GestureDetector(
-        onTap: () {
-          setState(() {
-            flag = 1;
-          });
-          badgeFunction();
-        },
-        child: Container(
-          width: 380,
-          decoration: kContainerDecoration.copyWith(boxShadow: [
-            BoxShadow(
-                offset: const Offset(0, 10),
-                blurRadius: 10,
-                color: kShadowColor.withOpacity(0.23))
-          ]),
-          margin: const EdgeInsets.all(5),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(homeName.toString(),
-                    style: kTextStyleLarge.copyWith(color: Colors.black)),
-                Text(streetName.toString(),
-                    style: kTextStyleSmall.copyWith(color: Colors.black)),
-                Text(pinCode.toString(),
-                    style: kTextStyleSmall.copyWith(color: Colors.black)),
-              ],
+    return name == null
+        ? const Center(
+            child: CircularProgressIndicator(
+              color: greenColor,
             ),
-          ),
-        ),
-      ),
-    );
+          )
+        : Container(
+            width: 380,
+            decoration: kContainerDecoration,
+            margin: const EdgeInsets.all(5),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(name.toString(), style: kTextStyleLarge),
+                  Text(street.toString(), style: kTextStyleSmall),
+                  Text(city.toString(), style: kTextStyleSmall),
+                  Text(postalCode.toString(), style: kTextStyleSmall),
+                ],
+              ),
+            ),
+          );
   }
 }

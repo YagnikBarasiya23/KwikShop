@@ -40,8 +40,5 @@ class CartController extends GetxController {
       .map((product) => product.key.productPrice * product.value)
       .toList()
       .reduce((value, element) => value + element);
-  var reminder = 0.obs;
-  void increment() {
-    reminder++;
-  }
+
 }

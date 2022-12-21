@@ -38,8 +38,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   get:
 
-  font_awesome_flutter: ^10.2.1
+
   geolocator: ^9.0.1
+  geocoding: ^2.0.5
   google_maps_flutter: ^2.1.12
   carousel_slider: ^4.1.1
   smooth_page_indicator: ^1.0.0+2

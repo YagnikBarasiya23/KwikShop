@@ -1,13 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kwikshop/body_widgets/header_widget.dart';
+import 'package:kwikshop/body_widgets/navigation_bar.dart';
 import 'package:kwikshop/components/our_button.dart';
 import 'package:kwikshop/constants.dart';
-
 import 'package:get/get.dart';
-import 'package:kwikshop/screens/add_detail_screen.dart';
 import 'package:kwikshop/screens/login_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -23,12 +22,31 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   bool checkboxValue = false;
   bool visiblePassword = true;
   late String confirmPassword;
+  String? firstName;
+  String? lastName;
+  String? number;
   final formKey = GlobalKey<FormState>();
+  final DatabaseReference _databaseReference =
+      FirebaseDatabase.instance.ref().child("Details");
+
+  @override
+  void dispose() {
+    Map<String, String> details = {
+      'FirstName': firstName.toString().trim(),
+      'LastName': lastName.toString().trim(),
+      'Number': number.toString(),
+      'UserID': FirebaseAuth.instance.currentUser!.uid.toString(),
+    };
+    _databaseReference
+        .child(FirebaseAuth.instance.currentUser!.uid.toString())
+        .child(0.toString())
+        .set(details);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         reverse: true,
         child: Stack(
@@ -60,8 +78,81 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           style: TextStyle(
                               color: Colors.grey, fontFamily: 'Poppins'),
                         ),
-                        const SizedBox(height: 55),
-                        TextField(
+                        const SizedBox(height: 20),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: TextFormField(
+                                textCapitalization: TextCapitalization.words,
+                                keyboardType: TextInputType.name,
+                                textInputAction: TextInputAction.done,
+                                decoration: kTextFieldDecoration.copyWith(
+                                    labelText: "First Name",
+                                    hintText: "Enter your firstname"),
+                                onChanged: (value) {
+                                  setState(() {
+                                    firstName = value;
+                                  });
+                                },
+                                validator: (value) {
+                                  if (value != null && value.isEmpty) {
+                                    return 'Enter your First Name';
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: TextFormField(
+                                textCapitalization: TextCapitalization.words,
+                                keyboardType: TextInputType.name,
+                                textInputAction: TextInputAction.done,
+                                decoration: kTextFieldDecoration.copyWith(
+                                    labelText: "Last Name",
+                                    hintText: "Enter your lastname"),
+                                onChanged: (value) {
+                                  setState(() {
+                                    lastName = value;
+                                  });
+                                },
+                                validator: (value) {
+                                  if (value != null && value.isEmpty) {
+                                    return 'Enter your Last Name';
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 20),
+                        TextFormField(
+                          textCapitalization: TextCapitalization.words,
+                          textInputAction: TextInputAction.done,
+                          decoration: kTextFieldDecoration.copyWith(
+                            labelText: "Phone Number",
+                            hintText: "Enter your Phone Number",
+                          ),
+                          keyboardType: TextInputType.phone,
+                          onChanged: (value) {
+                            setState(() {
+                              number = value;
+                            });
+                          },
+                          validator: (value) {
+                            if (value != null && value.length < 10) {
+                              return 'Phone number should of 10 digit';
+                            } else {
+                              return null;
+                            }
+                          },
+                        ),
+                        const SizedBox(height: 20),
+                        TextFormField(
+                          textCapitalization: TextCapitalization.words,
                           onChanged: (value) {
                             setState(() {
                               email = value;
@@ -71,9 +162,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               labelText: "E-mail address",
                               hintText: "Enter your email"),
                           keyboardType: TextInputType.emailAddress,
+                          validator: (value) {
+                            if (value != null && value.isEmpty) {
+                              return 'Enter your First Name';
+                            } else {
+                              return null;
+                            }
+                          },
                         ),
-                        const SizedBox(height: 20.0),
-                        TextField(
+                        const SizedBox(height: 20),
+                        TextFormField(
+                          textCapitalization: TextCapitalization.words,
                           onChanged: (value) {
                             setState(() {
                               password = value;
@@ -99,9 +198,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             ),
                           ),
                           keyboardType: TextInputType.visiblePassword,
+                          validator: (value) {
+                            if (value != null && value.isEmpty) {
+                              return 'Enter your First Name';
+                            } else {
+                              return null;
+                            }
+                          },
                         ),
-                        const SizedBox(height: 20.0),
+                        const SizedBox(height: 20),
                         TextFormField(
+                          textCapitalization: TextCapitalization.words,
                           onChanged: (value) {
                             setState(() {
                               confirmPassword = value;
@@ -135,7 +242,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             }
                           },
                         ),
-                        const SizedBox(height: 15.0),
+                        const SizedBox(height: 15),
                         FormField<bool>(
                           builder: (state) {
                             return Column(
@@ -187,9 +294,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             );
                           },
                         ),
-                        GestureDetector(
-                          child: button('Sign Up', 300),
-                          onTap: () async {
+                        button(
+                          'Sign Up',
+                          300,
+                          () async {
                             final validateForm =
                                 formKey.currentState!.validate();
                             if (validateForm) {
@@ -208,7 +316,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                           email: email.trim(),
                                           password: password);
                                   if (newUser != null) {
-                                    Get.off(() => DetailsScreen(),
+                                    Get.off(() => NaviBar(),
                                         transition: Transition.cupertino);
                                   }
                                 } on FirebaseAuthException catch (e) {
@@ -223,56 +331,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               }
                             }
                           },
-                        ),
-                        const Text(
-                          "Or create account using social media",
-                          style: TextStyle(
-                              color: Colors.grey, fontFamily: 'Poppins'),
-                        ),
-                        const SizedBox(height: 25.0),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            GestureDetector(
-                              child: const FaIcon(
-                                FontAwesomeIcons.googlePlus,
-                                size: 35,
-                                color: Color(0xFFEC2D2F),
-                              ),
-                              onTap: () {},
-                            ),
-                            const SizedBox(
-                              width: 30.0,
-                            ),
-                            GestureDetector(
-                              child: Container(
-                                padding: const EdgeInsets.all(0),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(100),
-                                  border: Border.all(
-                                      width: 5, color: const Color(0xFF40ABF0)),
-                                  color: const Color(0xFF40ABF0),
-                                ),
-                                child: const FaIcon(
-                                  FontAwesomeIcons.twitter,
-                                  size: 23,
-                                  color: Color(0xFFFFFFFF),
-                                ),
-                              ),
-                              onTap: () {},
-                            ),
-                            const SizedBox(
-                              width: 30.0,
-                            ),
-                            GestureDetector(
-                              child: const FaIcon(
-                                FontAwesomeIcons.facebook,
-                                size: 35,
-                                color: Color(0xFF3E529C),
-                              ),
-                              onTap: () {},
-                            ),
-                          ],
                         ),
                         const SizedBox(height: 10),
                         Row(

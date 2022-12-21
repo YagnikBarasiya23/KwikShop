@@ -96,63 +96,63 @@ class FeedBackScreen extends StatelessWidget {
                                       borderSide: BorderSide(
                                           color: Colors.red, width: 2.0)),
                                   focusedErrorBorder: OutlineInputBorder(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(10)),
-                                      borderSide: BorderSide(
-                                          color: Colors.red, width: 2.0)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                    borderSide: BorderSide(
+                                        color: Colors.red, width: 2.0),
+                                  ),
 
                                   // Inp
                                 ),
                               ),
                               const SizedBox(height: 20),
                               Center(
-                                child: GestureDetector(
-                                    onTap: () {
-                                      flag == 0
-                                          ? Get.snackbar(
-                                              'Cannot continue',
-                                              'Rate us to continue',
-                                              duration:
-                                                  const Duration(seconds: 2),
-                                              snackPosition:
-                                                  SnackPosition.BOTTOM,
-                                              margin: const EdgeInsets.all(7),
-                                            )
-                                          : Alert(
-                                              context: context,
-                                              title: 'Thank You',
-                                              desc:
-                                                  'Your feedback has been successfully submitted',
-                                              type: AlertType.success,
-                                              closeIcon: const Icon(
-                                                  CupertinoIcons.clear),
-                                              style: const AlertStyle(
-                                                animationType:
-                                                    AnimationType.shrink,
-                                                alertElevation: 2.5,
-                                              ),
-                                              closeFunction: () {
-                                                Navigator.pop(context);
-                                              },
-                                              buttons: [
-                                                  DialogButton(
-                                                    onPressed: () {
-                                                      Get.offAll(
-                                                          () => NaviBar(),
-                                                          transition: Transition
-                                                              .cupertino);
-                                                    },
-                                                    color:
-                                                        Colors.amber.shade700,
-                                                    child: const Text(
-                                                      'Back',
-                                                      style: TextStyle(
-                                                          color: Colors.white),
-                                                    ),
-                                                  )
-                                                ]).show();
-                                    },
-                                    child: button('Submit', 300)),
+                                child: button(
+                                  'Submit',
+                                  300,
+                                  () {
+                                    flag == 0
+                                        ? Get.snackbar(
+                                            'Cannot continue',
+                                            'Rate us to continue',
+                                            duration:
+                                                const Duration(seconds: 2),
+                                            snackPosition: SnackPosition.BOTTOM,
+                                            margin: const EdgeInsets.all(7),
+                                          )
+                                        : Alert(
+                                            context: context,
+                                            title: 'Thank You',
+                                            desc:
+                                                'Your feedback has been successfully submitted',
+                                            type: AlertType.success,
+                                            closeIcon: const Icon(
+                                                CupertinoIcons.clear),
+                                            style: const AlertStyle(
+                                              animationType:
+                                                  AnimationType.shrink,
+                                              alertElevation: 2.5,
+                                            ),
+                                            closeFunction: () {
+                                              Navigator.pop(context);
+                                            },
+                                            buttons: [
+                                                DialogButton(
+                                                  onPressed: () {
+                                                    Get.offAll(() => NaviBar(),
+                                                        transition: Transition
+                                                            .cupertino);
+                                                  },
+                                                  color: Colors.amber.shade700,
+                                                  child: const Text(
+                                                    'Back',
+                                                    style: TextStyle(
+                                                        color: Colors.white),
+                                                  ),
+                                                )
+                                              ]).show();
+                                  },
+                                ),
                               )
                             ],
                           ),
