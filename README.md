@@ -1,10 +1,10 @@
 # KwikShop
 
 Grocery Delivery app from your nearby retail shop
-- Clean Archtechiture
+- Clean Architecture
 - Bloc State Management
-- Implict and Explict Animations
-- Firebase Authenticaton
+- Implicit and Explicit Animations
+- Firebase Authentication
 - Firebase Firestore
 - Google Maps
 
