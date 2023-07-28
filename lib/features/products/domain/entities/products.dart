@@ -1,6 +1,6 @@
 import 'package:kwikshop/features/categories/domain/entities.dart';
 
-class Product  {
+class Product {
   final String productName;
   final double productPrice;
   final String productImage;
@@ -13,6 +13,4 @@ class Product  {
     required this.productPrice,
     required this.productCategory,
   });
-
-
 }

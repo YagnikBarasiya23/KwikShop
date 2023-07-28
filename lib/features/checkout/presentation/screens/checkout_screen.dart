@@ -274,6 +274,7 @@ class OnSuccess extends StatelessWidget {
             grandTotal: grandTotal,
           ),
         );
+    context.read<CartCubit>().clear();
     Navigator.popUntil(context, (route) => route.isFirst);
     Navigator.pushReplacementNamed(context, WelcomeScreen.routeName);
     context.read<CartCubit>().clear();

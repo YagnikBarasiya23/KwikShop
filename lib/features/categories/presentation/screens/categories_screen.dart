@@ -9,23 +9,31 @@ class CategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextTheme textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Categories'),
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 18),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Search', style: textTheme.headlineSmall),
+              Text(
+                'Search',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
               const SizedBox(height: 5),
-              const SearchButton(),
+              Card(
+                child: ListTile(
+                  onTap: () => showSearch(
+                    context: context,
+                    delegate: SearchButton(),
+                  ),
+                  leading: const Icon(Icons.search),
+                ),
+              ),
               const SizedBox(height: 10),
-              Text('Categories', style: textTheme.headlineSmall),
-              const SizedBox(height: 5),
               GridView.count(
                 crossAxisCount: 2,
                 shrinkWrap: true,

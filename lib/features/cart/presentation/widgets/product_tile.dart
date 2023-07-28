@@ -10,9 +10,6 @@ class ProductTile extends StatelessWidget {
     super.key,
     required this.image,
     required this.product,
-    required this.textTheme,
-    required this.theme,
-    required this.formatter,
     required this.quantity,
     required this.state,
     required this.index,
@@ -22,13 +19,14 @@ class ProductTile extends StatelessWidget {
   final Map<Product, dynamic> state;
   final int index;
   final String product;
-  final TextTheme textTheme;
-  final ThemeData theme;
-  final NumberFormat formatter;
   final int quantity;
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+    final TextTheme textTheme = theme.textTheme;
+    final NumberFormat formatter =
+        NumberFormat.simpleCurrency(decimalDigits: 0, locale: "en_IN");
     return ListTile(
       leading: CachedNetworkImage(
         imageUrl: image,

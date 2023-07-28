@@ -63,9 +63,6 @@ class CartScreen extends StatelessWidget {
                           index: index,
                           state: state,
                           product: product,
-                          textTheme: textTheme,
-                          theme: theme,
-                          formatter: formatter,
                           quantity: quantity,
                         );
                       },
@@ -84,7 +81,7 @@ class CartScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Grand Total: ${formatter.format(context.read<CartCubit>().grandTotal.round())}",
+                                "Grand Total: ${formatter.format(context.watch<CartCubit>().grandTotal.round())}",
                                 style: textTheme.titleMedium!
                                     .copyWith(fontWeight: FontWeight.bold),
                               ),

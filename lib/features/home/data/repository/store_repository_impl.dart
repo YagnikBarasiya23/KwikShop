@@ -70,7 +70,7 @@ class StoreRepositoryImpl implements StoreRepository {
       Store(
         id: '#4',
         storeImage:
-            'https://content.jdmagicbox.com/comp/ahmedabad/r5/079pxx79.xx79.220520212536.p9r5/catalogue/osia-hypermart-vishala-ahmedabad-hypermarkets-ubf1htt76m.jpg',
+            'https://content.jdmagicbox.com/comp/rajkot/t5/0281px281.x281.140913113715.g8t5/catalogue/golden-super-market-university-road-rajkot-supermarkets-home-delivery-ejvb389zfl.jpg?clr=',
         storeAddress: 'Amin Marg',
         storeName: 'Golden SuperMarket',
         storeRating: 4.5,
@@ -92,7 +92,7 @@ class StoreRepositoryImpl implements StoreRepository {
       Store(
         id: '#5',
         storeImage:
-            'https://content.jdmagicbox.com/comp/ahmedabad/r5/079pxx79.xx79.220520212536.p9r5/catalogue/osia-hypermart-vishala-ahmedabad-hypermarkets-ubf1htt76m.jpg',
+            'https://content.jdmagicbox.com/comp/raipur-chhattisgarh/t8/9999px771.x771.160425130118.f9t8/catalogue/vikram-provison-store-pandri-raipur-chhattisgarh-grocery-stores-apdfvyi.jpg',
         storeAddress: 'Indira Circle',
         storeName: 'Vikram Provision Store',
         storeRating: 3.5,
@@ -114,7 +114,7 @@ class StoreRepositoryImpl implements StoreRepository {
       Store(
         id: '#6',
         storeImage:
-            'https://content.jdmagicbox.com/comp/ahmedabad/r5/079pxx79.xx79.220520212536.p9r5/catalogue/osia-hypermart-vishala-ahmedabad-hypermarkets-ubf1htt76m.jpg',
+            'https://content.jdmagicbox.com/comp/bangalore/k6/080pxx80.xx80.170130110436.k7k6/catalogue/krishna-provision-store-kalkere-bangalore-provision-stores-3gfc0bb.jpg',
         storeAddress: 'Race course road',
         storeName: 'Krushna Provision Store',
         storeRating: 1.5,
@@ -136,7 +136,7 @@ class StoreRepositoryImpl implements StoreRepository {
       Store(
         id: '#7',
         storeImage:
-            'https://content.jdmagicbox.com/comp/ahmedabad/r5/079pxx79.xx79.220520212536.p9r5/catalogue/osia-hypermart-vishala-ahmedabad-hypermarkets-ubf1htt76m.jpg',
+            'https://static.wikia.nocookie.net/taarakmehta/images/6/6a/B7392B26-E97E-4E19-A833-26D487AD4560.jpeg/revision/latest?cb=20200624190915',
         storeAddress: 'Gondal Road',
         storeName: 'All in one Store',
         storeRating: 2.0,
@@ -158,7 +158,7 @@ class StoreRepositoryImpl implements StoreRepository {
       Store(
         id: '#8',
         storeImage:
-            'https://content.jdmagicbox.com/comp/ahmedabad/r5/079pxx79.xx79.220520212536.p9r5/catalogue/osia-hypermart-vishala-ahmedabad-hypermarkets-ubf1htt76m.jpg',
+            'https://content.jdmagicbox.com/comp/rewa/c2/9999p7662.7662.161021155321.c3c2/catalogue/yash-kirana-and-general-store-nh-7-satna-road-rewa-general-kirana-provision-stores-ehvgxyy.jpg',
         storeAddress: 'Ashapuradham Chowk',
         storeName: 'Yash General Store',
         storeRating: 4.0,
