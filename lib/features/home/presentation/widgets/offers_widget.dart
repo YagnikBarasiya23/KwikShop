@@ -23,7 +23,7 @@ class _OffersWidgetState extends State<OffersWidget> {
 
   int _currentIndex = 0;
 
-  final double _itemWidth = 300;
+  final double _itemWidth = 320;
 
   final int _numberOfItems = urls.length;
 
