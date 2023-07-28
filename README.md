@@ -1,16 +1,20 @@
-# kwikshop
+# KwikShop
 
-A new Flutter project.
+Grocery Delivery app from your nearby retail shop
+- Clean Archtechiture
+- Bloc State Management
+- Implict and Explict Animations
+- Firebase Authenticaton
+- Firebase Firestore
+- Google Maps
 
-## Getting Started
+  
+![ss12](https://github.com/YagnikBarasiya23/KwikShop/assets/119105452/dbabf895-8e59-4ced-b3ef-5ff2948ec7bd)
+![ss13](https://github.com/YagnikBarasiya23/KwikShop/assets/119105452/60215e3e-a20b-45f2-ad6e-fcfe70c4c03f)
+![ss11](https://github.com/YagnikBarasiya23/KwikShop/assets/119105452/ed2dddaa-48e7-475d-b5b2-90d2d3d9140d)
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
