@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>303874792918-13mphg7cs8mjhbhfj6fct63u875lq1vn.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.303874792918-13mphg7cs8mjhbhfj6fct63u875lq1vn</string>
+	<key>API_KEY</key>
+	<string>AIzaSyApOHnFl8VqHx8fo6UvaSslXGYgxWH-p74</string>
+	<key>GCM_SENDER_ID</key>
+	<string>303874792918</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.kwikshop</string>
+	<key>PROJECT_ID</key>
+	<string>kwikshop-83018</string>
+	<key>STORAGE_BUCKET</key>
+	<string>kwikshop-83018.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:303874792918:ios:d61c88fb8e010d412ed877</string>
+	<key>DATABASE_URL</key>
+	<string>https://kwikshop-83018-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

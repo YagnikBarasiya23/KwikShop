@@ -1,0 +1,63 @@
+name: kwikshop
+description: A new Flutter project.
+
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.5 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  cached_network_image: ^3.2.3
+  flutter_bloc: ^8.1.3
+  shared_preferences: ^2.2.0
+  intl: any
+  google_maps_flutter: ^2.3.1
+  geolocator: ^9.0.2
+  geocoding: ^2.1.0
+  firebase_core: ^2.15.0
+  firebase_auth: ^4.7.0
+  url_launcher: ^6.1.12
+  cloud_firestore: ^4.8.3
+  uuid: ^3.0.7
+  get_it: ^7.6.0
+  flutter_rating_bar: ^4.0.1
+
+
+
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+  flutter_lints: ^2.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/app_icon.png"
+  min_sdk_android: 23
+
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
+
+
+
+  fonts:
+     - family: Poppins
+       fonts:
+         - asset: fonts/Poppins-Regular.ttf
+
+

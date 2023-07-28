@@ -1,0 +1,15 @@
+enum Categories {
+  all,
+  fruits,
+  vegetables,
+  snacks,
+  meats,
+  bakery,
+  cleaners,
+  frozenFoods,
+  personalCare,
+  beverages,
+  dairy,
+  cannedGoods,
+  foodGrains,
+}
