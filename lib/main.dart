@@ -21,12 +21,12 @@ Future<void> main() async {
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   DependencyInjection.initializeDependencies();
   runApp(
-    const KwiKShop(),
+    const _KwiKShop(),
   );
 }
 
-class KwiKShop extends StatelessWidget {
-  const KwiKShop({super.key});
+class _KwiKShop extends StatelessWidget {
+  const _KwiKShop();
   @override
   Widget build(BuildContext context) => MultiBlocProvider(
         providers: [
