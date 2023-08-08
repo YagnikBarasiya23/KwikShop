@@ -11,7 +11,6 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     final TextTheme textTheme = theme.textTheme;
-
     return Scaffold(
       body: Stack(
         alignment: Alignment.center,
