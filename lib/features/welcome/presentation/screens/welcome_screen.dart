@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../core/shared/app_button.dart';
 import '../../../authentication/presentation/screens/login_screen.dart';
-import '../widgets/animated_background.dart';
+import '../widgets/screen_background.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -15,7 +15,7 @@ class WelcomeScreen extends StatelessWidget {
       body: Stack(
         alignment: Alignment.center,
         children: [
-          const AnimatedBackground(),
+          const ScreenBackground(),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
             child: Column(

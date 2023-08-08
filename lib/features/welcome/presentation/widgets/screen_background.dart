@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AnimatedBackground extends StatelessWidget {
-  const AnimatedBackground({super.key});
+class ScreenBackground extends StatelessWidget {
+  const ScreenBackground({super.key});
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
@@ -33,7 +33,7 @@ class AnimatedBackground extends StatelessWidget {
           ),
           Positioned(
             top: size.height * .5,
-            left: size.width * .12,
+            left: size.width * 0.8,
             child: CustomPaint(
               painter: Bubble(
                 radius: 30,
@@ -44,7 +44,7 @@ class AnimatedBackground extends StatelessWidget {
           ),
           Positioned(
             top: size.height * 0.4,
-            left: size.width * 0.4,
+            left: size.width * 0.35,
             child: CustomPaint(
               painter: Bubble(
                 radius: 60,

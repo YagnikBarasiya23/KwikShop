@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kwikshop/features/cart/presentation/bloc/orderid_cubit.dart';
+import 'package:kwikshop/features/welcome/presentation/screens/welcome_screen.dart';
 import 'config/routes/app_routes.dart';
 import 'config/theme/app_colors.dart';
 import 'config/theme/app_theme.dart';
@@ -52,6 +53,7 @@ class _KwiKShop extends StatelessWidget {
         child: MaterialApp(
           onGenerateRoute: RouteGenerator.generateRoutes,
           theme: ThemeHelper.lightTheme(AppColors.primaryAppColor),
+          initialRoute: WelcomeScreen.routeName,
           debugShowCheckedModeBanner: false,
         ),
       );

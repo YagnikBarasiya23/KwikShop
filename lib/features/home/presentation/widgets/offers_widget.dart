@@ -69,7 +69,6 @@ class _OffersWidgetState extends State<OffersWidget> {
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.sizeOf(context).width;
-
     return SizedBox(
       width: screenWidth,
       height: 150,
