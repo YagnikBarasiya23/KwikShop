@@ -4,7 +4,7 @@ import '../../../../injection_container.dart';
 import '../../../categories/domain/entities.dart';
 import '../../domain/usecase/products_usecase.dart';
 import '../bloc/current_category_cubit.dart';
-import '../widgets/category_layer.dart';
+import '../widgets/categories_layer.dart';
 import '../widgets/products_layer.dart';
 import '../widgets/two_stack_drop.dart';
 
@@ -17,14 +17,14 @@ class ProductScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocBuilder<CurrentCategoryCubit, Categories>(
-        builder: (context, state) => TwoStackDrop(
+        builder: (context, state) => BackDrop(
           storeName: storeName,
           currentCategory: Categories.all,
           productsLayer: ProductsLayer(
             products:
                 productInjection.get<ProductsUseCase>().call(params: state),
           ),
-          categoriesLayer: CategoryLayer(
+          categoriesLayer: CategoriesLayer(
             currentCategory: state,
             onCategoryTap: (value) =>
                 context.read<CurrentCategoryCubit>().setCategory(value),

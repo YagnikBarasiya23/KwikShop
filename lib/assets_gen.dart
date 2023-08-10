@@ -10,7 +10,6 @@ class AssetsIconsGen {
 
 class Assets {
   Assets._();
-
   static const AssetsIconsGen icons = AssetsIconsGen();
 }
 

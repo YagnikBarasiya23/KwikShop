@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../../../categories/domain/entities.dart';
 
-class CategoryLayer extends StatelessWidget {
+class CategoriesLayer extends StatelessWidget {
   final Categories currentCategory;
   final ValueChanged<Categories> onCategoryTap;
   final List<Categories> _categories = Categories.values;
 
-  const CategoryLayer({
+  const CategoriesLayer({
     Key? key,
     required this.currentCategory,
     required this.onCategoryTap,
@@ -22,7 +22,7 @@ class CategoryLayer extends StatelessWidget {
       onTap: () => onCategoryTap(category),
       child: category == currentCategory
           ? Column(
-              children: <Widget>[
+              children: [
                 const SizedBox(height: 16.0),
                 Text(
                   categoryString,

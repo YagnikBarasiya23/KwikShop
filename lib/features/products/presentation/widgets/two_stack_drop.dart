@@ -4,13 +4,13 @@ import '../../../categories/domain/entities.dart';
 
 const double _kFlingVelocity = 2.0;
 
-class TwoStackDrop extends StatefulWidget {
+class BackDrop extends StatefulWidget {
   final Categories currentCategory;
   final Widget productsLayer;
   final Widget categoriesLayer;
   final String storeName;
 
-  const TwoStackDrop({
+  const BackDrop({
     required this.storeName,
     required this.currentCategory,
     required this.productsLayer,
@@ -19,13 +19,11 @@ class TwoStackDrop extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<TwoStackDrop> createState() => _TwoStackDropState();
+  State<BackDrop> createState() => _BackDropState();
 }
 
-class _TwoStackDropState extends State<TwoStackDrop>
+class _BackDropState extends State<BackDrop>
     with SingleTickerProviderStateMixin {
-  final GlobalKey _backdropKey = GlobalKey(debugLabel: 'Backdrop');
-
   late final AnimationController _animationController;
 
   @override
@@ -47,9 +45,8 @@ class _TwoStackDropState extends State<TwoStackDrop>
   }
 
   @override
-  void didUpdateWidget(TwoStackDrop old) {
+  void didUpdateWidget(BackDrop old) {
     super.didUpdateWidget(old);
-
     if (widget.currentCategory != old.currentCategory) {
       _toggleBackdropLayerVisibility();
     } else if (!_frontLayerVisible) {
@@ -66,11 +63,10 @@ class _TwoStackDropState extends State<TwoStackDrop>
       begin: RelativeRect.fromLTRB(
           0.0, layerTop, 0.0, layerTop - layerSize.height),
       end: const RelativeRect.fromLTRB(0.0, 0.0, 0.0, 0.0),
-    ).animate(_animationController.view);
+    ).animate(_animationController);
 
     return Stack(
-      key: _backdropKey,
-      children: <Widget>[
+      children: [
         widget.categoriesLayer,
         PositionedTransition(
           rect: layerTopAnimation,
@@ -104,7 +100,7 @@ class _TwoStackDropState extends State<TwoStackDrop>
         iconTheme: IconThemeData(
           color: colorScheme.onSecondary,
         ),
-        actions: <Widget>[
+        actions: [
           IconButton(
             icon: const Icon(
               Icons.tune,
