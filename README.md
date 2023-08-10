@@ -8,7 +8,7 @@ Grocery Delivery app from your nearby retail shop
 - Firebase Firestore
 - Google Maps
 
-  https://mega.nz/file/YioiVYyB#b7pW8csLAh_2nxNwr9sk3e-Lia5FfOOeEQP9f-fJssM
+  https://mega.nz/file/gqRx3JTL#0k1Ijb8CseKYZY24gowHOTMYhHLQ1_z1VPqRNU7M8AY
   
 ![ss12](https://github.com/YagnikBarasiya23/KwikShop/assets/119105452/dbabf895-8e59-4ced-b3ef-5ff2948ec7bd)
 ![ss13](https://github.com/YagnikBarasiya23/KwikShop/assets/119105452/60215e3e-a20b-45f2-ad6e-fcfe70c4c03f)
