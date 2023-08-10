@@ -1,7 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:kwikshop/core/shared/app_cached_network_image.dart';
 import 'package:kwikshop/core/shared/snackbar.dart';
 import 'package:kwikshop/features/cart/presentation/bloc/cart_cubit.dart';
 import '../../domain/entities/products.dart';
@@ -60,11 +60,12 @@ class _ProductCard extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image(
-                        image: CachedNetworkImageProvider(product.productImage),
+                      CachedImage(
+                        imageUrl: product.productImage,
                         width: 90,
                         height: 90,
                         fit: BoxFit.fill,
+                        isIcon: true,
                       ),
                       Text(
                         product.productName.toString(),

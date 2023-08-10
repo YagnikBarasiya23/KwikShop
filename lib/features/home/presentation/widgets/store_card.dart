@@ -1,6 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kwikshop/core/shared/app_cached_network_image.dart';
 import 'package:kwikshop/features/bookmark/bloc/bookmark_cubit.dart';
 import 'package:kwikshop/features/products/presentation/screens/products_screen.dart';
 import '../../domain/entities/store.dart';
@@ -42,20 +42,16 @@ class StoreCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    width: screenWidth,
-                    height: 149,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: CachedNetworkImageProvider(
-                          store.storeImage,
-                        ),
-                        fit: BoxFit.fitWidth,
-                      ),
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(15),
-                        topRight: Radius.circular(15),
-                      ),
+                  ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      topRight: Radius.circular(15),
+                      topLeft: Radius.circular(15),
+                    ),
+                    child: CachedImage(
+                      imageUrl: store.storeImage,
+                      height: 149,
+                      width: screenWidth,
+                      fit: BoxFit.fitWidth,
                     ),
                   ),
                   Padding(

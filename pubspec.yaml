@@ -26,6 +26,7 @@ dependencies:
   uuid: ^3.0.7
   get_it: ^7.6.0
   flutter_rating_bar: ^4.0.1
+  flutter_cache_manager: any
 
 
 

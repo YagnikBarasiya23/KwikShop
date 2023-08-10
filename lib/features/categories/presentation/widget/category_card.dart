@@ -1,5 +1,5 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import '../../../../core/shared/app_cached_network_image.dart';
 import '../../data/models/categories_model.dart';
 import '../screens/catergory_screen.dart';
 
@@ -40,10 +40,11 @@ class CategoryCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    CachedNetworkImage(
+                    CachedImage(
                       imageUrl: category.image,
                       width: 50,
                       height: 40,
+                      isIcon: true,
                     ),
                   ],
                 )

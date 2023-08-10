@@ -1,7 +1,8 @@
 import 'dart:async';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../core/shared/app_cached_network_image.dart';
 
 class OffersWidget extends StatefulWidget {
   const OffersWidget({super.key});
@@ -78,7 +79,7 @@ class _OffersWidgetState extends State<OffersWidget> {
           padding: const EdgeInsets.all(5),
           child: ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(15)),
-            child: CachedNetworkImage(
+            child: CachedImage(
               imageUrl: urls[index],
               fit: BoxFit.fill,
             ),
