@@ -10,7 +10,6 @@ import 'package:kwikshop/features/checkout/domain/entity/map_model.dart';
 import '../../../../injection_container.dart';
 import '../../domain/usecase/checkout_usecase.dart';
 
-
 part 'checkout_event.dart';
 
 part 'checkout_state.dart';
@@ -70,9 +69,6 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
         zoom: 19,
         tilt: 37,
       );
-      final GoogleMapController googleMapController = await completer.future;
-      googleMapController
-          .animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
 
       checkoutInjection.get<CheckoutLocationDetailsUseCase>().call(
             params: LocationDetails(

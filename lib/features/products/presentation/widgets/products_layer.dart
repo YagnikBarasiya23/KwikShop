@@ -86,7 +86,9 @@ class _ProductCard extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      context.read<CartBloc>().add(AddItem(product: product));
+                      context.read<CartBloc>().add(
+                            AddItem(product: product),
+                          );
                       ScaffoldMessenger.of(context).showSnackBar(
                         appSnackBar("Your item is add successfully"),
                       );

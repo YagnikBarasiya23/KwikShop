@@ -4,8 +4,6 @@ import 'package:kwikshop/features/cart/domain/entity/cart.dart';
 
 import '../../../products/domain/entities/products.dart';
 
-
-
 part 'cart_event.dart';
 
 part 'cart_state.dart';
@@ -33,11 +31,11 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         } else {
           currentCart[event.product] = 1;
         }
-        List<double> productSubTotal = cart.entries
+        List<double> productSubTotal = currentCart.entries
             .map((product) => product.key.productPrice * product.value)
             .toList();
 
-        double grandTotal = cart.entries
+        double grandTotal = currentCart.entries
             .map((product) => product.key.productPrice * product.value)
             .toList()
             .reduce((value, element) => value + element);

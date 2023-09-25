@@ -15,7 +15,8 @@ import '../../domain/usecase/checkout_usecase.dart';
 import '../bloc/checkout_bloc.dart';
 
 class CheckoutScreen extends StatelessWidget {
-  const CheckoutScreen({super.key, required this.storeName, required this.grandTotal});
+  const CheckoutScreen(
+      {super.key, required this.storeName, required this.grandTotal});
 
   static const String routeName = '/checkout';
   final String storeName;
