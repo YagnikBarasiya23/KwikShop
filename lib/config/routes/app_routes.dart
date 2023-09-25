@@ -1,9 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:kwikshop/core/shared/app_loading.dart';
-import '../../features/authentication/presentation/screens/reset_password_screen.dart';
+
 import '../../features/authentication/presentation/screens/login_screen.dart';
 import '../../features/authentication/presentation/screens/registration_screen.dart';
+import '../../features/authentication/presentation/screens/reset_password_screen.dart';
 import '../../features/bookmark/presentation/screens/bookmark_screen.dart';
 import '../../features/cart/presentation/screens/cart_screen.dart';
 import '../../features/categories/domain/entities.dart';
@@ -79,10 +80,11 @@ class RouteGenerator {
           ),
         );
       case CheckoutScreen.routeName:
-        final storeName = settings.arguments as String;
+        final args = settings.arguments as List<dynamic>;
         return MaterialPageRoute(
           builder: (context) => CheckoutScreen(
-            storeName: storeName,
+            storeName: args[0],
+            grandTotal: args[1],
           ),
         );
       case AboutUsScreen.routeName:

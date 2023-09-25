@@ -1,9 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+
 import '../../../products/domain/entities/products.dart';
-import '../bloc/cart_cubit.dart';
 
 class ProductTile extends StatelessWidget {
   const ProductTile({
@@ -13,6 +12,9 @@ class ProductTile extends StatelessWidget {
     required this.quantity,
     required this.state,
     required this.index,
+    required this.productSubTotal,
+    required this.onAdd,
+    required this.onRemove,
   });
 
   final String image;
@@ -20,6 +22,9 @@ class ProductTile extends StatelessWidget {
   final int index;
   final String product;
   final int quantity;
+  final List<double> productSubTotal;
+  final VoidCallback onAdd;
+  final VoidCallback onRemove;
 
   @override
   Widget build(BuildContext context) {
@@ -39,15 +44,14 @@ class ProductTile extends StatelessWidget {
             textTheme.titleMedium!.copyWith(color: theme.colorScheme.onSurface),
       ),
       subtitle: Text(
-        formatter.format(context.watch<CartCubit>().productSubTotal[index]),
+        formatter.format(productSubTotal[index]),
         style: TextStyle(color: theme.colorScheme.onSurface),
       ),
       trailing: FittedBox(
         child: Row(
           children: [
             IconButton(
-              onPressed: () =>
-                  context.read<CartCubit>().add(state.keys.toList()[index]),
+              onPressed: onAdd,
               icon: Icon(
                 Icons.add_circle,
                 color: theme.colorScheme.tertiary,
@@ -59,8 +63,7 @@ class ProductTile extends StatelessWidget {
                   .copyWith(color: theme.colorScheme.onSurface),
             ),
             IconButton(
-              onPressed: () =>
-                  context.read<CartCubit>().remove(state.keys.toList()[index]),
+              onPressed: onRemove,
               icon: Icon(
                 Icons.remove_circle,
                 color: theme.colorScheme.tertiary,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 
-
 class CachedImage extends StatelessWidget {
   const CachedImage({
     Key? key,
@@ -60,34 +59,33 @@ class ProgressWidget extends StatelessWidget {
     return progress == null
         ? CustomShimmer(isIcon: isIcon)
         : Stack(
-      fit: StackFit.loose,
-      children: [
-        Center(
-          child: SizedBox(
-            height: 45,
-            width: 45,
-            child: CircularProgressIndicator(
-              value: progress,
-              valueColor: const AlwaysStoppedAnimation(Colors.green),
-              backgroundColor: Colors.blueGrey,
-              strokeWidth: 4,
-            ),
-          ),
-        ),
-        Center(
-          child: progress == 1
-              ? const Icon(
-            Icons.done_rounded,
-            color: Colors.green,
-            size: 30,
-          )
-              : Text(
-            (progress! * 100).toStringAsFixed(0),
-
-          ),
-        )
-      ],
-    );
+            fit: StackFit.loose,
+            children: [
+              Center(
+                child: SizedBox(
+                  height: 45,
+                  width: 45,
+                  child: CircularProgressIndicator(
+                    value: progress,
+                    valueColor: const AlwaysStoppedAnimation(Colors.green),
+                    backgroundColor: Colors.blueGrey,
+                    strokeWidth: 4,
+                  ),
+                ),
+              ),
+              Center(
+                child: progress == 1
+                    ? const Icon(
+                        Icons.done_rounded,
+                        color: Colors.green,
+                        size: 30,
+                      )
+                    : Text(
+                        (progress! * 100).toStringAsFixed(0),
+                      ),
+              )
+            ],
+          );
   }
 }
 
@@ -122,41 +120,49 @@ class _CustomShimmerState extends State<CustomShimmer>
     _animationStart = TweenSequence<Alignment>(
       [
         TweenSequenceItem(
-            tween: Tween<Alignment>(
-                begin: Alignment.topLeft, end: Alignment.topRight),
-            weight: 1),
+          tween: Tween<Alignment>(
+              begin: Alignment.topLeft, end: Alignment.topRight),
+          weight: 1,
+        ),
         TweenSequenceItem(
-            tween: Tween<Alignment>(
-                begin: Alignment.topRight, end: Alignment.bottomRight),
-            weight: 1),
+          tween: Tween<Alignment>(
+              begin: Alignment.topRight, end: Alignment.bottomRight),
+          weight: 1,
+        ),
         TweenSequenceItem(
-            tween: Tween<Alignment>(
-                begin: Alignment.bottomRight, end: Alignment.bottomLeft),
-            weight: 1),
+          tween: Tween<Alignment>(
+              begin: Alignment.bottomRight, end: Alignment.bottomLeft),
+          weight: 1,
+        ),
         TweenSequenceItem(
-            tween: Tween<Alignment>(
-                begin: Alignment.bottomLeft, end: Alignment.topLeft),
-            weight: 1),
+          tween: Tween<Alignment>(
+              begin: Alignment.bottomLeft, end: Alignment.topLeft),
+          weight: 1,
+        ),
       ],
     ).animate(_animationController);
     _animationEnd = TweenSequence<Alignment>(
       [
         TweenSequenceItem(
-            tween: Tween<Alignment>(
-                begin: Alignment.bottomRight, end: Alignment.bottomLeft),
-            weight: 1),
+          tween: Tween<Alignment>(
+              begin: Alignment.bottomRight, end: Alignment.bottomLeft),
+          weight: 1,
+        ),
         TweenSequenceItem(
-            tween: Tween<Alignment>(
-                begin: Alignment.bottomLeft, end: Alignment.topLeft),
-            weight: 1),
+          tween: Tween<Alignment>(
+              begin: Alignment.bottomLeft, end: Alignment.topLeft),
+          weight: 1,
+        ),
         TweenSequenceItem(
-            tween: Tween<Alignment>(
-                begin: Alignment.topLeft, end: Alignment.topRight),
-            weight: 1),
+          tween: Tween<Alignment>(
+              begin: Alignment.topLeft, end: Alignment.topRight),
+          weight: 1,
+        ),
         TweenSequenceItem(
-            tween: Tween<Alignment>(
-                begin: Alignment.topRight, end: Alignment.bottomRight),
-            weight: 1),
+          tween: Tween<Alignment>(
+              begin: Alignment.topRight, end: Alignment.bottomRight),
+          weight: 1,
+        ),
       ],
     ).animate(_animationController);
     _animationController.repeat();
@@ -178,8 +184,9 @@ class _CustomShimmerState extends State<CustomShimmer>
             begin: _animationStart.value,
             end: _animationEnd.value,
           ),
-          borderRadius:
-          widget.isIcon ? BorderRadius.circular(100) : BorderRadius.circular(15),
+          borderRadius: widget.isIcon
+              ? BorderRadius.circular(100)
+              : BorderRadius.circular(15),
         ),
       ),
     );

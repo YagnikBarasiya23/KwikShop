@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:kwikshop/core/shared/app_loading.dart';
-import 'package:kwikshop/features/cart/presentation/bloc/orderid_cubit.dart';
+import '../../../cart/presentation/bloc/orderid_cubit.dart';
 
 class OrdersScreen extends StatelessWidget {
   const OrdersScreen({super.key});

@@ -3,11 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:kwikshop/core/shared/app_cached_network_image.dart';
 import 'package:kwikshop/core/shared/snackbar.dart';
-import 'package:kwikshop/features/cart/presentation/bloc/cart_cubit.dart';
+import 'package:kwikshop/features/cart/presentation/bloc/cart_bloc.dart';
+
 import '../../domain/entities/products.dart';
 
 class ProductsLayer extends StatelessWidget {
   const ProductsLayer({super.key, required this.products});
+
   final List<Product> products;
 
   @override
@@ -33,6 +35,7 @@ class ProductsLayer extends StatelessWidget {
 
 class _ProductCard extends StatelessWidget {
   const _ProductCard({required this.product});
+
   final Product product;
 
   @override
@@ -83,7 +86,7 @@ class _ProductCard extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      context.read<CartCubit>().add(product);
+                      context.read<CartBloc>().add(AddItem(product: product));
                       ScaffoldMessenger.of(context).showSnackBar(
                         appSnackBar("Your item is add successfully"),
                       );

@@ -27,6 +27,7 @@ dependencies:
   get_it: ^7.6.0
   flutter_rating_bar: ^4.0.1
   flutter_cache_manager: any
+  equatable: any
 
 
 
