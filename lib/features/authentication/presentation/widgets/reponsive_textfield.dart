@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class ReusedTextField extends StatelessWidget {
   const ReusedTextField({
@@ -11,7 +12,9 @@ class ReusedTextField extends StatelessWidget {
     this.suffixIcon = const SizedBox(),
     this.keyboardType = TextInputType.name,
     required this.controller,
+    this.inputFormatter = const [],
   });
+
   final String labelText;
   final IconData prefixIcon;
   final Widget suffixIcon;
@@ -20,11 +23,13 @@ class ReusedTextField extends StatelessWidget {
   final TextInputType keyboardType;
   final TextCapitalization textCapitalization;
   final String? Function(String?) validator;
+  final List<TextInputFormatter> inputFormatter;
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     return TextFormField(
+      inputFormatters: inputFormatter,
       textCapitalization: textCapitalization,
       keyboardType: keyboardType,
       obscureText: isVisible,

@@ -1,13 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kwikshop/features/authentication/presentation/screens/login_screen.dart';
 import 'package:kwikshop/features/authentication/presentation/widgets/header_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 import '../../../../core/shared/app_button.dart';
 import '../../../../core/shared/snackbar.dart';
-import '../../../welcome/presentation/screens/welcome_screen.dart';
+import '../../../home/presentation/screens/home_screen.dart';
 import '../bloc/checkbox_cubit.dart';
 import '../bloc/visibility_cubit.dart';
 import '../widgets/reponsive_textfield.dart';
@@ -15,6 +17,7 @@ import '../widgets/visibility_icon.dart';
 
 class RegistrationScreen extends StatelessWidget {
   const RegistrationScreen({super.key});
+
   static const String routeName = '/register';
 
   static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -48,20 +51,25 @@ class RegistrationScreen extends StatelessWidget {
         );
       } else {
         try {
-          final until = Navigator.popUntil(context, (route) => route.isFirst);
-          final go =
-              Navigator.pushReplacementNamed(context, WelcomeScreen.routeName);
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
             email: _emailController.text.trim(),
             password: _passwordController.text.trim(),
           );
           setUserDetails();
-          until;
-          go;
+          if (context.mounted) {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (_) => const HomeScreen()),
+                  (route) => false,
+            );
+
+          }
         } on FirebaseAuthException catch (e) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            appSnackBar(e.toString()),
-          );
+          if (context.mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              appSnackBar(e.toString()),
+            );
+          }
         }
       }
     }
@@ -160,6 +168,7 @@ class RegistrationScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     ReusedTextField(
+                      inputFormatter: [LengthLimitingTextInputFormatter(10)],
                       keyboardType: TextInputType.phone,
                       controller: _mobileNumberController,
                       labelText: "Phone Number",

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-SnackBar appSnackBar(String text) => SnackBar(
+SnackBar appSnackBar(String text, {bool isError = true}) => SnackBar(
       content: Text(text),
-      duration: const Duration(milliseconds: 1500),
+      duration: const Duration(milliseconds: 2500),
       elevation: 8,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
@@ -10,4 +10,5 @@ SnackBar appSnackBar(String text) => SnackBar(
         ),
       ),
       behavior: SnackBarBehavior.floating,
+      backgroundColor: isError ? Colors.red : Colors.black,
     );

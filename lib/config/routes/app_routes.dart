@@ -40,76 +40,76 @@ class RouteGenerator {
         );
       case LoginScreen.routeName:
         return MaterialPageRoute(
-          builder: (context) => const LoginScreen(),
+          builder: (_) => const LoginScreen(),
         );
       case RegistrationScreen.routeName:
         return MaterialPageRoute(
-          builder: (context) => const RegistrationScreen(),
+          builder: (_) => const RegistrationScreen(),
         );
       case ResetPasswordScreen.routeName:
         return MaterialPageRoute(
-          builder: (context) => const ResetPasswordScreen(),
+          builder: (_) => const ResetPasswordScreen(),
         );
 
       case CategoriesScreen.routeName:
         return MaterialPageRoute(
-          builder: (context) => const CategoriesScreen(),
+          builder: (_) => const CategoriesScreen(),
         );
       case CategoryScreen.routeName:
         final category = settings.arguments as Categories;
         return MaterialPageRoute(
-          builder: (context) => CategoryScreen(category: category),
+          builder: (_) => CategoryScreen(category: category),
         );
       case BookMarkScreen.routeName:
         return MaterialPageRoute(
-          builder: (context) => const BookMarkScreen(),
+          builder: (_) => const BookMarkScreen(),
         );
 
       case ProductScreen.routeName:
         final storeName = settings.arguments as String;
         return MaterialPageRoute(
-          builder: (context) => ProductScreen(
+          builder: (_) => ProductScreen(
             storeName: storeName,
           ),
         );
       case CartScreen.routeName:
         final storeName = settings.arguments as String;
         return MaterialPageRoute(
-          builder: (context) => CartScreen(
+          builder: (_) => CartScreen(
             storeName: storeName,
           ),
         );
       case CheckoutScreen.routeName:
         final args = settings.arguments as List<dynamic>;
         return MaterialPageRoute(
-          builder: (context) => CheckoutScreen(
+          builder: (_) => CheckoutScreen(
             storeName: args[0],
             grandTotal: args[1],
           ),
         );
       case AboutUsScreen.routeName:
         return MaterialPageRoute(
-          builder: (context) => const AboutUsScreen(),
+          builder: (_) => const AboutUsScreen(),
         );
       case AddressScreen.routeName:
         return MaterialPageRoute(
-          builder: (context) => const AddressScreen(),
+          builder: (_) => const AddressScreen(),
         );
       case FeedBackScreen.routeName:
         return MaterialPageRoute(
-          builder: (context) => const FeedBackScreen(),
+          builder: (_) => const FeedBackScreen(),
         );
       case OrdersScreen.routeName:
         return MaterialPageRoute(
-          builder: (context) => const OrdersScreen(),
+          builder: (_) => const OrdersScreen(),
         );
       case AccountSettingScreen.routeName:
         return MaterialPageRoute(
-          builder: (context) => const AccountSettingScreen(),
+          builder: (_) => const AccountSettingScreen(),
         );
       default:
         return MaterialPageRoute(
-          builder: (context) => const Scaffold(),
+          builder: (_) => const Scaffold(),
         );
     }
   }

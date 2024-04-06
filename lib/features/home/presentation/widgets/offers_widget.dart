@@ -17,7 +17,7 @@ class _OffersWidgetState extends State<OffersWidget> {
   static const List<String> urls = [
     'https://www.guestblogging.pro/wp-content/uploads/2022/10/Best-Online-Grocery-Store-in-India.jpg',
     'https://www.crushpixel.com/big-static23/preview4/vector-online-grocery-store-banner-6054271.jpg',
-    'https://www.grocistore.com/admin/uploads/banners/web_banners/banner1576516931.JPG',
+    'https://st.depositphotos.com/1258191/56891/i/450/depositphotos_568915806-stock-photo-online-grocery-shopping-home-delivery.jpg',
   ];
 
   Timer? _timer;

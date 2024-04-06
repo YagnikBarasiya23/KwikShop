@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class BookmarkCubit extends Cubit<List<String>> {
   SharedPreferences? _sharedPreferences;
   static const String bookmarkKey = 'bookmark';
+
   BookmarkCubit() : super([]) {
     initializePreferences();
   }
@@ -11,7 +12,7 @@ class BookmarkCubit extends Cubit<List<String>> {
   void initializePreferences() async {
     _sharedPreferences = await SharedPreferences.getInstance();
     final bookmarkStores = _sharedPreferences!.getStringList(bookmarkKey);
-    emit(bookmarkStores!);
+    emit(bookmarkStores ?? []);
   }
 
   Future<void> toggleBookmark(String storeId) async {

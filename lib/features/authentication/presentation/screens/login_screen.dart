@@ -1,18 +1,20 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kwikshop/features/home/presentation/screens/home_screen.dart';
+
+import '../../../../core/shared/app_button.dart';
 import '../../../../core/shared/snackbar.dart';
-import '../../../welcome/presentation/screens/welcome_screen.dart';
 import '../bloc/visibility_cubit.dart';
+import '../widgets/header_widget.dart';
 import '../widgets/reponsive_textfield.dart';
 import '../widgets/visibility_icon.dart';
 import 'registration_screen.dart';
-import '../../../../core/shared/app_button.dart';
-import '../widgets/header_widget.dart';
 import 'reset_password_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
+
   static const String routeName = '/login';
   static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   static final TextEditingController _emailController = TextEditingController();
@@ -23,20 +25,25 @@ class LoginScreen extends StatelessWidget {
     final validateForm = _formKey.currentState!.validate();
     if (validateForm) {
       try {
-        final until = Navigator.popUntil(context, (route) => route.isFirst);
-        final go =
-            Navigator.pushReplacementNamed(context, WelcomeScreen.routeName);
         await FirebaseAuth.instance.signInWithEmailAndPassword(
-            email: _emailController.text.trim(),
-            password: _passwordController.text.trim());
-        until;
-        go;
-      } on FirebaseAuthException catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          appSnackBar(
-            e.toString(),
-          ),
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim(),
         );
+        if (context.mounted) {
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (_) => const HomeScreen()),
+            (route) => false,
+          );
+        }
+      } on FirebaseAuthException catch (e) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            appSnackBar(
+              e.toString(),
+            ),
+          );
+        }
       }
     }
   }
